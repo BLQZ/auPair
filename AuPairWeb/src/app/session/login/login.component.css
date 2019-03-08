@@ -1,0 +1,27 @@
+.container {
+    transform: translateY(0%)
+}
+
+.login {
+    margin-left: 3.8%;
+    width: 95%;
+}
+
+
+/* #login_boton {
+    margin-bottom: 4.5%;
+    margin-left: 43%;
+} */
+
+#logo {
+    margin-top: 15%;
+}
+
+.snackLogin {
+    color: blue;
+}
+
+.alert-danger {
+    width: 30%;
+    margin: 0 auto;
+}

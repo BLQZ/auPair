@@ -1,0 +1,45 @@
+<div id="login" class="container" fxFlexFill fxLayoutAlign="center center">
+    <div fxFlexFill fxLayoutAlign="center center">
+        <div fxLayout="row" fxFlex=50% fxLayoutAlign="center center">
+            <div id="logo" fxFlexFill fxLayoutAlign="center center">
+                <img fxFlex="70%" src="../../../assets/images/logo1.png" srcset="">
+            </div>
+
+            <div id="form" fxFlexFill>
+                <form class="example-form">
+                    <table class="login" cellspacing="0">
+                        <tr fxFlexFill>
+                            <td>
+                                <mat-form-field class="login">
+                                    <input matInput name="email" type="text" placeholder="Email" [(ngModel)]="email" />
+                                </mat-form-field>
+
+                                <div *ngIf="form.controls['email'].invalid && (form.controls['email'].dirty || form.controls['email'].touched)" class="alert alert-danger">
+                                    <div *ngIf="form.controls['email'].errors.required">
+                                        Pregunta necesaria
+                                    </div>
+                                </div>
+                            </td>
+                        </tr>
+                        <tr fxFlexFill>
+                            <td>
+                                <mat-form-field class="login">
+                                    <input matInput name="password" type="password" placeholder="Password" [(ngModel)]="password" />
+                                </mat-form-field>
+                            </td>
+                        </tr>
+                        <div fxLayout="column" fxLayoutGap="2%">
+                            <button mat-raised-button color="primary" id="login_boton" (click)="doLogin()">Login</button>
+                            <button mat-stroked-button color="primary" id="loginGogle_boton" (click)="doLoginGoogle()"><i class="fa fa-google"></i> &nbsp;&nbsp; Login Google</button>
+                            <br>
+                        </div>
+
+                    </table>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="alert alert-danger" role="alert" *ngIf="isError">
+    Debe rellenar todos los campos
+</div>
