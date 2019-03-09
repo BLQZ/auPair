@@ -13,6 +13,7 @@ import { environment } from '../../environments/environment';
 import { AuthService } from '../services/auth.service';
 import {MatSnackBarModule} from '@angular/material/snack-bar';
 import { Sessionroutes } from './session-routing.module';
+import { FlexLayoutModule } from '@angular/flex-layout';
 
 @NgModule({
   declarations: [LoginComponent],
@@ -26,7 +27,8 @@ import { Sessionroutes } from './session-routing.module';
     RouterModule,
     FormsModule,
     MatSnackBarModule,
-    RouterModule.forChild(Sessionroutes)
+    RouterModule.forChild(Sessionroutes),
+    FlexLayoutModule
   ],
   providers: [
     AuthService

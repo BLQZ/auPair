@@ -9,6 +9,4 @@ export interface User {
     picture: string;
     email: string;
     role: string;
-    encuesta: boolean;
-    
 }
