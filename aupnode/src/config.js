@@ -49,7 +49,7 @@ const config = {
         ip: process.env.IP || undefined,
         port: process.env.PORT || 8080,
         mongo: {
-            uri: process.env.MONGODB_URI || 'mongodb://localhost/aupnode'
+            uri: process.env.MONGODB_URI || 'mongodb://admin:admin1@ds046067.mlab.com:46067/aupair'
         }
     }
 }
