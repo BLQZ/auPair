@@ -2,16 +2,15 @@ import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 
 export const routes: Routes = [
-  // {
-  //   path: 'component',
-  //   component: FullComponent,
-  //   children: [
-  //     {
-  //       path: '',
-  //       loadChildren: './component/component.module#ComponentsModule'
-  //     }
-  //   ]
-  // },
+  {
+    path: 'component',
+    children: [
+      {
+        path: '',
+        loadChildren: './component/component.module#ComponentModule'
+      }
+    ]
+  },
   {
     path: 'session',
     children: [
