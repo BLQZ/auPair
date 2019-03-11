@@ -16,6 +16,7 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.RadioButton;
+import android.widget.RadioGroup;
 import android.widget.Toast;
 
 import com.bumptech.glide.Glide;
@@ -67,7 +68,9 @@ public class SignupFragment extends Fragment {
     private Button btnSubirImagen;
     Uri uriSelected;
     private Button btnRegistro, btnRegistroaLogin, btnNext, btnPrevious;
-    private RadioButton rbAupair, rbFamily;
+    private RadioGroup rgGenero, rgRole;
+    private RadioButton rbAupair, rbFamily, rbMale, rbFemale;
+    private boolean male;
     private FloatingActionButton btnA, btnB;
     Context ctx;
 
@@ -104,7 +107,11 @@ public class SignupFragment extends Fragment {
         btnRegistroaLogin = view.findViewById(R.id.buttonRegistroaLogin);
         rbAupair = view.findViewById(R.id.rbAuPair);
         rbFamily = view.findViewById(R.id.rbFamilia);
+        rbFemale = view.findViewById(R.id.rbMujer);
+        rbMale = view.findViewById(R.id.rbHombre);
         btnNext = view.findViewById(R.id.btnNext);
+        rgGenero = view.findViewById(R.id.genero);
+        rgRole = view.findViewById(R.id.role);
 
         etCity = view.findViewById(R.id.etCity);
         etProvince = view.findViewById(R.id.etProvince);
@@ -136,9 +143,11 @@ public class SignupFragment extends Fragment {
                 etPassword.setVisibility(View.INVISIBLE);
                 etPasswordRep.setVisibility(View.INVISIBLE);
                 btnRegistroaLogin.setVisibility(View.INVISIBLE);
-                rbAupair.setVisibility(View.INVISIBLE);
-                rbFamily.setVisibility(View.INVISIBLE);
+                /*rbAupair.setVisibility(View.INVISIBLE);
+                rbFamily.setVisibility(View.INVISIBLE);*/
                 btnNext.setVisibility(View.INVISIBLE);
+                rgGenero.setVisibility(View.INVISIBLE);
+                rgRole.setVisibility(View.INVISIBLE);
 
                 etCity.setVisibility(View.VISIBLE);
                 etProvince.setVisibility(View.VISIBLE);
@@ -161,9 +170,11 @@ public class SignupFragment extends Fragment {
                 etPassword.setVisibility(View.VISIBLE);
                 etPasswordRep.setVisibility(View.VISIBLE);
                 btnRegistroaLogin.setVisibility(View.VISIBLE);
-                rbAupair.setVisibility(View.VISIBLE);
-                rbFamily.setVisibility(View.VISIBLE);
+                /*rbAupair.setVisibility(View.INVISIBLE);
+                rbFamily.setVisibility(View.INVISIBLE);*/
                 btnNext.setVisibility(View.VISIBLE);
+                rgGenero.setVisibility(View.VISIBLE);
+                rgRole.setVisibility(View.VISIBLE);
 
                 etCity.setVisibility(View.INVISIBLE);
                 etProvince.setVisibility(View.INVISIBLE);
@@ -197,12 +208,12 @@ public class SignupFragment extends Fragment {
             }
         });*/
 
-        /*btnRegistro.setOnClickListener(new View.OnClickListener() {
+        btnRegistro.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                doRegister();
+                register();
             }
-        });*/
+        });
 
         /*btnRegistro.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -375,7 +386,31 @@ public class SignupFragment extends Fragment {
     }
 
     public void register(){
-        UserDto user = new UserDto(etEmail.getText().toString(), etPassword.getText().toString(), etNombre.getText().toString());
+
+        UserDto user;
+
+        if(rbAupair.isChecked()){
+            if(rbMale.isChecked()){
+                male=true;
+            } else {
+                male=false;
+            }
+            user = new UserDto(etEmail.getText().toString(), etPassword.getText().toString(), etNombre.getText().toString(),
+                    "http://www.paravivirenirlanda.com/wp-content/uploads/2017/02/Au-pair.jpg", "aupair",
+                    etAddress.getText().toString(), etCity.getText().toString(), etProvince.getText().toString(), etCountry.getText().toString(),
+                    male, 2);
+        } else {
+            if(rbMale.isChecked()){
+                male=true;
+            } else {
+                male=false;
+            }
+            user = new UserDto(etEmail.getText().toString(), etPassword.getText().toString(), etNombre.getText().toString(),
+                    "http://www.paravivirenirlanda.com/wp-content/uploads/2017/02/Au-pair.jpg", "family",
+                    etAddress.getText().toString(), etCity.getText().toString(), etProvince.getText().toString(), etCountry.getText().toString(),
+                    male, 2);
+        }
+
         AuthService service = ServiceGenerator.createService(AuthService.class);
         Call<LoginResponse> call = service.register(user);
 

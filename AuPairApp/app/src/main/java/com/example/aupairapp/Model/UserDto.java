@@ -3,6 +3,7 @@ package com.example.aupairapp.Model;
 import android.os.Build;
 import android.support.annotation.RequiresApi;
 
+import java.util.Date;
 import java.util.Objects;
 
 public class UserDto {
@@ -12,6 +13,13 @@ public class UserDto {
     private String name;
     private String picture;
     private String role;
+    private String address;
+    private String city;
+    private String province;
+    private String country;
+    private boolean male;
+    private Date date;
+    private int nHijos;
 
     @RequiresApi(api = Build.VERSION_CODES.KITKAT)
     @Override
@@ -23,7 +31,13 @@ public class UserDto {
                 Objects.equals(password, userDto.password) &&
                 Objects.equals(name, userDto.name) &&
                 Objects.equals(picture, userDto.picture) &&
-                Objects.equals(role, userDto.role);
+                Objects.equals(role, userDto.role) &&
+                Objects.equals(address, userDto.address) &&
+                Objects.equals(city, userDto.city) &&
+                Objects.equals(country, userDto.province) &&
+                Objects.equals(male, userDto.male) &&
+                Objects.equals(date, userDto.date) &&
+                Objects.equals(nHijos, userDto.nHijos);
     }
 
     @RequiresApi(api = Build.VERSION_CODES.KITKAT)
@@ -72,12 +86,83 @@ public class UserDto {
         this.role = role;
     }
 
+    public String getAddress() {
+        return address;
+    }
+
+    public void setAddress(String address) {
+        this.address = address;
+    }
+
+    public String getCity() {
+        return city;
+    }
+
+    public void setCity(String city) {
+        this.city = city;
+    }
+
+    public String getProvince() {
+        return province;
+    }
+
+    public void setProvince(String province) {
+        this.province = province;
+    }
+
+    public String getCountry() {
+        return country;
+    }
+
+    public void setCountry(String country) {
+        this.country = country;
+    }
+
+    public boolean isMale() {
+        return male;
+    }
+
+    public void setMale(boolean male) {
+        this.male = male;
+    }
+
+    public Date getDate() {
+        return date;
+    }
+
+    public void setDate(Date date) {
+        this.date = date;
+    }
+
+    public int getnHijos() {
+        return nHijos;
+    }
+
+    public void setnHijos(int nHijos) {
+        this.nHijos = nHijos;
+    }
+
     public UserDto(String email, String password, String name, String picture, String role) {
         this.email = email;
         this.password = password;
         this.name = name;
         this.picture = picture;
         this.role = role;
+    }
+
+    public UserDto(String email, String password, String name, String picture, String role,
+                   String address, String city, String province, String country, boolean male, int nHijos) {
+        this.email = email;
+        this.password = password;
+        this.name = name;
+        this.picture = picture;
+        this.role = role;
+        this.address = address;
+        this.city = city;
+        this.province = province;
+        this.country = country;
+        this.male = male;
+        this.nHijos = nHijos;
     }
 
     public UserDto(String email, String password, String name) {
@@ -94,6 +179,13 @@ public class UserDto {
                 ", name='" + name + '\'' +
                 ", picture='" + picture + '\'' +
                 ", role='" + role + '\'' +
+                ", address='" + address + '\'' +
+                ", city='" + city + '\'' +
+                ", province='" + province + '\'' +
+                ", country='" + country + '\'' +
+                ", male=" + male +
+                ", date=" + date +
+                ", nHijos=" + nHijos +
                 '}';
     }
 }
