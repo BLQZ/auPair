@@ -13,4 +13,5 @@
     <string name="deRegistroaLogin">LOGIN</string>
     <string name="sharedpreferences_filename">login</string>
     <string name="jwt_key">JWT_KEY</string>
+    <string name="nextRegistro">Next</string>
 </resources>

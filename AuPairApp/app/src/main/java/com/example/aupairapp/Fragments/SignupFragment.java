@@ -1,6 +1,7 @@
 package com.example.aupairapp.Fragments;
 
 import android.app.Activity;
+import android.app.Service;
 import android.content.Context;
 import android.content.Intent;
 import android.net.Uri;
@@ -23,6 +24,7 @@ import com.example.aupairapp.Model.LoginResponse;
 import com.example.aupairapp.Model.UserDto;
 import com.example.aupairapp.R;
 import com.example.aupairapp.Services.AuthService;
+import com.google.gson.annotations.SerializedName;
 
 import java.io.BufferedInputStream;
 import java.io.ByteArrayOutputStream;
@@ -100,21 +102,28 @@ public class SignupFragment extends Fragment {
         etPasswordRep = view.findViewById(R.id.editTextPasswordRepeat);
         btnRegistroaLogin = view.findViewById(R.id.buttonRegistroaLogin);
         btnRegistro = view.findViewById(R.id.btnAddInmueble);
-        ivImagenPerfil = view.findViewById(R.id.imageViewPreImg);
+        /*ivImagenPerfil = view.findViewById(R.id.imageViewPreImg);*/
 
-        btnSubirImagen = view.findViewById(R.id.buttonSubirImagen);
+        /*btnSubirImagen = view.findViewById(R.id.buttonSubirImagen);*/
 
-        btnSubirImagen.setOnClickListener(new View.OnClickListener() {
+        /*btnSubirImagen.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 performFileSearch();
             }
-        });
+        });*/
+
+        /*btnRegistro.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                doRegister();
+            }
+        });*/
 
         btnRegistro.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                doRegister();
+                register();
             }
         });
 
@@ -279,5 +288,30 @@ public class SignupFragment extends Fragment {
 
     Boolean validarString (RequestBody texto) {
         return texto != null && texto.toString().length() >0;
+    }
+
+    public void register(){
+        UserDto user = new UserDto(etEmail.getText().toString(), etPassword.getText().toString(), etNombre.getText().toString());
+        AuthService service = ServiceGenerator.createService(AuthService.class);
+        Call<LoginResponse> call = service.register(user);
+
+        call.enqueue(new Callback<LoginResponse>() {
+            @Override
+            public void onResponse(Call<LoginResponse> call, Response<LoginResponse> response) {
+                if(response.isSuccessful()){
+                    Log.d("Uploaded", "Éxito");
+                    Log.d("Uploaded", response.body().toString());
+                    UtilUser.setUserInfo(getActivity(), response.body().getUser());
+                    startActivity(new Intent(getActivity(), MainActivity.class));
+                } else {
+                    Log.e("Upload error", response.errorBody().toString());
+                }
+            }
+
+            @Override
+            public void onFailure(Call<LoginResponse> call, Throwable t) {
+                Log.e("Upload error", t.getMessage());
+            }
+        });
     }
 }

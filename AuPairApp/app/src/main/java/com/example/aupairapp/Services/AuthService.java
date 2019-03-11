@@ -3,6 +3,7 @@ package com.example.aupairapp.Services;
 import com.example.aupairapp.Model.LoginResponse;
 import com.example.aupairapp.Model.PassDto;
 import com.example.aupairapp.Model.User;
+import com.example.aupairapp.Model.UserDto;
 
 import okhttp3.MultipartBody;
 import okhttp3.RequestBody;
@@ -29,5 +30,8 @@ public interface AuthService {
                                    @Part("email") RequestBody email,
                                    @Part("password") RequestBody password,
                                    @Part("name") RequestBody name);
+
+    @POST("/users")
+    Call<LoginResponse> register(@Body UserDto user);
 
 }
