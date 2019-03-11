@@ -37,7 +37,42 @@ const userSchema = new Schema({
     picture: {
         type: String,
         trim: true
-    }
+    },
+    address: {
+        type: String,
+        required: true,
+        trim: true
+    },
+    city: {
+        type: String,
+        required: true,
+        trim: true
+    },
+    province: {
+        type: String,
+        required: true,
+        trim: true
+    },
+    country: {
+        type: String,
+        required: true,
+        trim: true
+    },
+    male: {
+        type: Boolean,
+        required: true,
+        default: true
+    },
+    nHijos: {
+        type: Number,
+        default: null
+    },
+    date: {
+        type: Date
+    },
+    anuncios: [{
+        type: String
+    }]
 }, {
     timestamps: true
 })
@@ -73,7 +108,7 @@ userSchema.methods = {
         let fields = ['id', 'name', 'picture', 'role']
 
         if (full) {
-            fields = [...fields, 'email', 'createdAt']
+            fields = [...fields, 'email', 'address', 'city', 'province', 'country', 'male', 'nHijos', 'date', 'anuncios', 'createdAt']
         }
 
         fields.forEach((field) => { view[field] = this[field] })
@@ -90,8 +125,11 @@ userSchema.statics = {
     roles,
 
     createFromService({ service, id, email, name, picture }) {
-        return this.findOne({ $or: [{
-                [`services.${service}`]: id }, { email }] }).then((user) => {
+        return this.findOne({
+            $or: [{
+                [`services.${service}`]: id
+            }, { email }]
+        }).then((user) => {
             if (user) {
                 user.services[service] = id
                 user.name = name
@@ -99,8 +137,15 @@ userSchema.statics = {
                 return user.save()
             } else {
                 const password = randtoken.generate(16)
-                return this.create({ services: {
-                        [service]: id }, email, password, name, picture })
+                return this.create({
+                    services: {
+                        [service]: id
+                    },
+                    email,
+                    password,
+                    name,
+                    picture
+                })
             }
         })
     }
