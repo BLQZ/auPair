@@ -13,17 +13,14 @@
 
         <ImageView
             android:id="@+id/imageView2"
-            android:layout_width="0dp"
-            android:layout_height="0dp"
-            android:layout_marginBottom="8dp"
+            android:layout_width="200dp"
+            android:layout_height="200dp"
             android:src="@drawable/logo1"
-            app:layout_constraintBottom_toTopOf="@+id/editTextNombreRegistro"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
 
         <Button
-            android:id="@+id/btnAddInmueble"
+            android:id="@+id/btnNext"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginStart="8dp"
@@ -41,49 +38,48 @@
             android:layout_height="wrap_content"
             android:layout_marginStart="8dp"
             android:layout_marginEnd="8dp"
-            android:layout_marginBottom="8dp"
             android:ems="10"
             android:hint="@string/Nombre"
             android:inputType="textPersonName"
-            app:layout_constraintBottom_toTopOf="@+id/editTextEmailRegistro"
-            app:layout_constraintEnd_toEndOf="@+id/imageView2"
-            app:layout_constraintStart_toStartOf="@+id/imageView2" />
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/imageView2" />
 
         <EditText
             android:id="@+id/editTextEmailRegistro"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:layout_marginBottom="8dp"
+            android:layout_marginTop="8dp"
             android:ems="10"
             android:hint="@string/Email"
             android:inputType="textPersonName"
-            app:layout_constraintBottom_toTopOf="@+id/editTextPasswordRegistro"
             app:layout_constraintEnd_toEndOf="@+id/editTextNombreRegistro"
-            app:layout_constraintStart_toStartOf="@+id/editTextNombreRegistro" />
+            app:layout_constraintStart_toStartOf="@+id/editTextNombreRegistro"
+            app:layout_constraintTop_toBottomOf="@+id/editTextNombreRegistro" />
 
         <EditText
             android:id="@+id/editTextPasswordRegistro"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:layout_marginBottom="8dp"
+            android:layout_marginTop="8dp"
             android:ems="10"
             android:hint="@string/Password"
             android:inputType="textPassword"
-            app:layout_constraintBottom_toTopOf="@+id/editTextPasswordRepeat"
             app:layout_constraintEnd_toEndOf="@+id/editTextEmailRegistro"
-            app:layout_constraintStart_toStartOf="@+id/editTextEmailRegistro" />
+            app:layout_constraintStart_toStartOf="@+id/editTextEmailRegistro"
+            app:layout_constraintTop_toBottomOf="@+id/editTextEmailRegistro" />
 
         <EditText
             android:id="@+id/editTextPasswordRepeat"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:layout_marginBottom="8dp"
+            android:layout_marginTop="8dp"
             android:ems="10"
             android:hint="@string/RepetirPass"
             android:inputType="textPassword"
-            app:layout_constraintBottom_toTopOf="@+id/btnAddInmueble"
             app:layout_constraintEnd_toEndOf="@+id/editTextPasswordRegistro"
-            app:layout_constraintStart_toStartOf="@+id/editTextPasswordRegistro" />
+            app:layout_constraintStart_toStartOf="@+id/editTextPasswordRegistro"
+            app:layout_constraintTop_toBottomOf="@+id/editTextPasswordRegistro" />
 
         <Button
             android:id="@+id/buttonRegistroaLogin"
@@ -93,8 +89,174 @@
             android:background="@color/colorSecundary"
             android:text="@string/deRegistroaLogin"
             app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="@+id/btnAddInmueble"
-            app:layout_constraintStart_toStartOf="@+id/btnAddInmueble" />
+            app:layout_constraintEnd_toEndOf="@+id/btnNext"
+            app:layout_constraintStart_toStartOf="@+id/btnNext" />
+
+        <TextView
+            android:id="@+id/tittleSignUp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="8dp"
+            android:layout_marginTop="8dp"
+            android:layout_marginEnd="8dp"
+            android:layout_marginBottom="8dp"
+            android:text="Datos Personales"
+            android:textAlignment="center"
+            android:textAllCaps="false"
+            android:textColor="@color/colorPrimary"
+            android:textSize="20sp"
+            android:textStyle="bold"
+            app:layout_constraintBottom_toTopOf="@+id/editTextNombreRegistro"
+            app:layout_constraintEnd_toStartOf="@+id/imageView2"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <android.support.design.widget.FloatingActionButton
+            android:id="@+id/fb1"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="64dp"
+            android:layout_marginTop="8dp"
+            android:layout_marginBottom="8dp"
+            android:clickable="true"
+            android:src="@drawable/ic_security_white_24dp"
+            app:backgroundTint="@color/colorPrimary"
+            app:layout_constraintBottom_toTopOf="@+id/btnNext"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/rbAuPair" />
+
+        <android.support.design.widget.FloatingActionButton
+            android:id="@+id/fb2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:layout_marginEnd="64dp"
+            android:layout_marginBottom="8dp"
+            android:clickable="true"
+            android:src="@drawable/ic_person_black_24dp"
+            app:backgroundTint="@color/colorPrimary"
+            app:layout_constraintBottom_toTopOf="@+id/btnNext"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/rbFamilia" />
+
+        <RadioButton
+            android:id="@+id/rbAuPair"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:text=" Au Pair"
+            app:layout_constraintEnd_toEndOf="@+id/fb1"
+            app:layout_constraintStart_toStartOf="@+id/fb1"
+            app:layout_constraintTop_toBottomOf="@+id/editTextPasswordRepeat" />
+
+        <RadioButton
+            android:id="@+id/rbFamilia"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:text="Familia"
+            app:layout_constraintEnd_toEndOf="@+id/fb2"
+            app:layout_constraintStart_toStartOf="@+id/fb2"
+            app:layout_constraintTop_toBottomOf="@+id/editTextPasswordRepeat" />
+
+        <Button
+            android:id="@+id/btnSignup"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="8dp"
+            android:layout_marginEnd="8dp"
+            android:layout_marginBottom="8dp"
+            android:background="@color/colorSecundary"
+            android:text="Signup"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent" />
+
+        <Button
+            android:id="@+id/btnPrevious"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="8dp"
+            android:layout_marginEnd="8dp"
+            android:layout_marginBottom="8dp"
+            android:background="@color/colorPrimary"
+            android:text="Previous"
+            android:textColor="@android:color/white"
+            app:layout_constraintBottom_toTopOf="@+id/btnSignup"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent" />
+
+        <EditText
+            android:id="@+id/etCity"
+            android:layout_width="189dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="8dp"
+            android:layout_marginTop="8dp"
+            android:ems="10"
+            android:hint="Ciudad"
+            android:inputType="textPersonName"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/imageView2" />
+
+        <EditText
+            android:id="@+id/etProvince"
+            android:layout_width="189dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:layout_marginEnd="8dp"
+            android:ems="10"
+            android:hint="Provincia"
+            android:inputType="textPersonName"
+            app:layout_constraintEnd_toEndOf="@+id/editTextNombreRegistro"
+            app:layout_constraintTop_toBottomOf="@+id/imageView2" />
+
+        <EditText
+            android:id="@+id/etCountry"
+            android:layout_width="189dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:ems="10"
+            android:hint="País"
+            android:inputType="textPersonName"
+            app:layout_constraintEnd_toEndOf="@+id/etCity"
+            app:layout_constraintStart_toStartOf="@+id/etCity"
+            app:layout_constraintTop_toBottomOf="@+id/etCity" />
+
+        <EditText
+            android:id="@+id/etDate"
+            android:layout_width="189dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:ems="10"
+            android:hint="F. Nacimiento"
+            android:inputType="date"
+            app:layout_constraintEnd_toEndOf="@+id/etProvince"
+            app:layout_constraintStart_toStartOf="@+id/etProvince"
+            app:layout_constraintTop_toBottomOf="@+id/etProvince" />
+
+        <EditText
+            android:id="@+id/etAddress"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:ems="10"
+            android:hint="Dirección"
+            android:inputType="textPersonName"
+            app:layout_constraintEnd_toEndOf="@+id/etDate"
+            app:layout_constraintStart_toStartOf="@+id/etCountry"
+            app:layout_constraintTop_toBottomOf="@+id/etCountry" />
+
+        <EditText
+            android:id="@+id/etDescription"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:ems="10"
+            android:hint="Descripción"
+            android:inputType="textMultiLine"
+            app:layout_constraintEnd_toEndOf="@+id/etAddress"
+            app:layout_constraintStart_toStartOf="@+id/etAddress"
+            app:layout_constraintTop_toBottomOf="@+id/editTextPasswordRegistro" />
 
     </android.support.constraint.ConstraintLayout>
 

@@ -6,6 +6,7 @@ import android.content.Context;
 import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
+import android.support.design.widget.FloatingActionButton;
 import android.support.v4.app.Fragment;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -14,6 +15,7 @@ import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
+import android.widget.RadioButton;
 import android.widget.Toast;
 
 import com.bumptech.glide.Glide;
@@ -59,15 +61,14 @@ public class SignupFragment extends Fragment {
     private String mParam2;
 
     private OnFragmentInteractionListener mListener;
-    private EditText etEmail;
-    private EditText etNombre;
-    private EditText etPassword;
-    private EditText etPasswordRep;
+    private EditText etEmail, etNombre, etPassword, etPasswordRep, etCity, etProvince, etCountry, etAddress, etDate, etDescription;
     /*private CircleImageView ivImagenPerfil;*/
     private ImageView ivImagenPerfil;
     private Button btnSubirImagen;
     Uri uriSelected;
-    private Button btnRegistro, btnRegistroaLogin;
+    private Button btnRegistro, btnRegistroaLogin, btnNext, btnPrevious;
+    private RadioButton rbAupair, rbFamily;
+    private FloatingActionButton btnA, btnB;
     Context ctx;
 
 
@@ -101,7 +102,90 @@ public class SignupFragment extends Fragment {
         etPassword = view.findViewById(R.id.editTextPasswordRegistro);
         etPasswordRep = view.findViewById(R.id.editTextPasswordRepeat);
         btnRegistroaLogin = view.findViewById(R.id.buttonRegistroaLogin);
-        btnRegistro = view.findViewById(R.id.btnAddInmueble);
+        rbAupair = view.findViewById(R.id.rbAuPair);
+        rbFamily = view.findViewById(R.id.rbFamilia);
+        btnNext = view.findViewById(R.id.btnNext);
+
+        etCity = view.findViewById(R.id.etCity);
+        etProvince = view.findViewById(R.id.etProvince);
+        etCountry = view.findViewById(R.id.etCountry);
+        etDate = view.findViewById(R.id.etDate);
+        etAddress = view.findViewById(R.id.etAddress);
+        etDescription = view.findViewById(R.id.etDescription);
+        btnA = view.findViewById(R.id.fb1);
+        btnB = view.findViewById(R.id.fb2);
+        btnPrevious = view.findViewById(R.id.btnPrevious);
+        btnRegistro = view.findViewById(R.id.btnSignup);
+
+        etCity.setVisibility(View.INVISIBLE);
+        etProvince.setVisibility(View.INVISIBLE);
+        etCountry.setVisibility(View.INVISIBLE);
+        etDate.setVisibility(View.INVISIBLE);
+        etAddress.setVisibility(View.INVISIBLE);
+        etDescription.setVisibility(View.INVISIBLE);
+        btnA.setEnabled(true);
+        btnB.setEnabled(false);
+        btnPrevious.setVisibility(View.INVISIBLE);
+        btnRegistro.setVisibility(View.INVISIBLE);
+
+        btnNext.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                etEmail.setVisibility(View.INVISIBLE);
+                etNombre.setVisibility(View.INVISIBLE);
+                etPassword.setVisibility(View.INVISIBLE);
+                etPasswordRep.setVisibility(View.INVISIBLE);
+                btnRegistroaLogin.setVisibility(View.INVISIBLE);
+                rbAupair.setVisibility(View.INVISIBLE);
+                rbFamily.setVisibility(View.INVISIBLE);
+                btnNext.setVisibility(View.INVISIBLE);
+
+                etCity.setVisibility(View.VISIBLE);
+                etProvince.setVisibility(View.VISIBLE);
+                etCountry.setVisibility(View.VISIBLE);
+                etDate.setVisibility(View.VISIBLE);
+                etAddress.setVisibility(View.VISIBLE);
+                etDescription.setVisibility(View.VISIBLE);
+                btnA.setEnabled(false);
+                btnB.setEnabled(true);
+                btnPrevious.setVisibility(View.VISIBLE);
+                btnRegistro.setVisibility(View.VISIBLE);
+            }
+        });
+
+        btnPrevious.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                etEmail.setVisibility(View.VISIBLE);
+                etNombre.setVisibility(View.VISIBLE);
+                etPassword.setVisibility(View.VISIBLE);
+                etPasswordRep.setVisibility(View.VISIBLE);
+                btnRegistroaLogin.setVisibility(View.VISIBLE);
+                rbAupair.setVisibility(View.VISIBLE);
+                rbFamily.setVisibility(View.VISIBLE);
+                btnNext.setVisibility(View.VISIBLE);
+
+                etCity.setVisibility(View.INVISIBLE);
+                etProvince.setVisibility(View.INVISIBLE);
+                etCountry.setVisibility(View.INVISIBLE);
+                etDate.setVisibility(View.INVISIBLE);
+                etAddress.setVisibility(View.INVISIBLE);
+                etDescription.setVisibility(View.INVISIBLE);
+                btnA.setEnabled(true);
+                btnB.setEnabled(false);
+                btnPrevious.setVisibility(View.INVISIBLE);
+                btnRegistro.setVisibility(View.INVISIBLE);
+            }
+        });
+
+
+
+
+        /*etEmail.setVisibility(View.INVISIBLE);
+        etNombre.setVisibility(View.INVISIBLE);
+        etPassword.setVisibility(View.INVISIBLE);
+        etPasswordRep.setVisibility(View.INVISIBLE);*/
+        /*btnRegistro = view.findViewById(R.id.btnAddInmueble);*/
         /*ivImagenPerfil = view.findViewById(R.id.imageViewPreImg);*/
 
         /*btnSubirImagen = view.findViewById(R.id.buttonSubirImagen);*/
@@ -120,12 +204,12 @@ public class SignupFragment extends Fragment {
             }
         });*/
 
-        btnRegistro.setOnClickListener(new View.OnClickListener() {
+        /*btnRegistro.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 register();
             }
-        });
+        });*/
 
         btnRegistroaLogin.setOnClickListener(new View.OnClickListener() {
             @Override
