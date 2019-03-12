@@ -1,0 +1,260 @@
+{
+	"info": {
+		"_postman_id": "f15f5140-fcd9-4987-b60c-350b5dc58d35",
+		"name": "Au Pair",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "Signup",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"name": "Content-Type",
+						"type": "text",
+						"value": "application/x-www-form-urlencoded"
+					}
+				],
+				"body": {
+					"mode": "urlencoded",
+					"urlencoded": [
+						{
+							"key": "email",
+							"value": "herrera@gmail.com",
+							"type": "text"
+						},
+						{
+							"key": "password",
+							"value": "123456",
+							"type": "text"
+						},
+						{
+							"key": "name",
+							"value": "Familia Herrera",
+							"type": "text"
+						},
+						{
+							"key": "role",
+							"value": "family",
+							"type": "text"
+						},
+						{
+							"key": "picture",
+							"value": "http://www.paravivirenirlanda.com/wp-content/uploads/2017/02/Au-pair.jpg",
+							"type": "text"
+						},
+						{
+							"key": "address",
+							"value": "Calle San Jacinto, 12",
+							"type": "text"
+						},
+						{
+							"key": "city",
+							"value": "Sevilla",
+							"type": "text"
+						},
+						{
+							"key": "province",
+							"value": "Sevilla",
+							"type": "text"
+						},
+						{
+							"key": "country",
+							"value": "España",
+							"type": "text"
+						},
+						{
+							"key": "male",
+							"value": "false",
+							"type": "text"
+						},
+						{
+							"key": "nHijos",
+							"value": "3",
+							"type": "text"
+						},
+						{
+							"key": "date",
+							"value": "2016-06-03T10:34",
+							"type": "text"
+						}
+					]
+				},
+				"url": {
+					"raw": "{{UrlHeroku}}/users?access_token={{MasterKeyAUP}}",
+					"host": [
+						"{{UrlHeroku}}"
+					],
+					"path": [
+						"users"
+					],
+					"query": [
+						{
+							"key": "access_token",
+							"value": "{{MasterKeyAUP}}"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Login",
+			"request": {
+				"auth": {
+					"type": "basic",
+					"basic": [
+						{
+							"key": "password",
+							"value": "123456",
+							"type": "string"
+						},
+						{
+							"key": "username",
+							"value": "aupair@gmail.com",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": ""
+				},
+				"url": {
+					"raw": "{{UrlHeroku}}/auth?access_token={{MasterKeyAUP}}",
+					"host": [
+						"{{UrlHeroku}}"
+					],
+					"path": [
+						"auth"
+					],
+					"query": [
+						{
+							"key": "access_token",
+							"value": "{{MasterKeyAUP}}"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "List Users",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": ""
+				},
+				"url": {
+					"raw": "{{UrlHeroku}}/users?access_token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjVjODJiMjRjOWNiZjFkMWIzMjhjNDAzYSIsImlhdCI6MTU1MjEyODE4N30.zTafSRtYLzdpebmD2zmuxuFiRXwYwaOG0hU8AMxKbBg",
+					"host": [
+						"{{UrlHeroku}}"
+					],
+					"path": [
+						"users"
+					],
+					"query": [
+						{
+							"key": "access_token",
+							"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjVjODJiMjRjOWNiZjFkMWIzMjhjNDAzYSIsImlhdCI6MTU1MjEyODE4N30.zTafSRtYLzdpebmD2zmuxuFiRXwYwaOG0hU8AMxKbBg"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Add Anuncio",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"name": "Content-Type",
+						"value": "application/x-www-form-urlencoded",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "urlencoded",
+					"urlencoded": [
+						{
+							"key": "contenido",
+							"value": "Soy un estudiante de Diseño, y quiero inciar un master en París, pero no puedo permitirme alojamiento, me gustan mucho los niños y los perros.",
+							"type": "text"
+						},
+						{
+							"key": "ownerId",
+							"value": "5c86b9d5fcbf2f002371c905",
+							"type": "text"
+						}
+					]
+				},
+				"url": {
+					"raw": "{{UrlLocal}}/anuncios?access_token={{MasterKeyAUP}}",
+					"host": [
+						"{{UrlLocal}}"
+					],
+					"path": [
+						"anuncios"
+					],
+					"query": [
+						{
+							"key": "access_token",
+							"value": "{{MasterKeyAUP}}"
+						}
+					]
+				}
+			},
+			"response": []
+		}
+	],
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"id": "78273f75-5877-47f6-b86a-68b3805866b0",
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"id": "b222382c-6e01-4f9d-8051-833d08115a39",
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		}
+	],
+	"variable": [
+		{
+			"id": "8c718801-4ed7-46ea-8b9d-f6d8c4c4208b",
+			"key": "UrlLocal",
+			"value": "http://localhost:9000",
+			"type": "string"
+		},
+		{
+			"id": "33bf39f0-a698-4427-919a-374cc8185ada",
+			"key": "MasterKeyAUP",
+			"value": "4JeZTCtYMb9PIyFN0juQY3FMP8Hdrt6Q",
+			"type": "string"
+		},
+		{
+			"id": "1e8eba89-e31f-4566-9674-57fb093e4131",
+			"key": "UrlHeroku",
+			"value": "https://aupairs.herokuapp.com",
+			"type": "string"
+		}
+	]
+}
