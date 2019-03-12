@@ -71,7 +71,8 @@ const userSchema = new Schema({
         type: Date
     },
     anuncios: [{
-        type: String
+        type: Schema.ObjectId,
+        ref: 'Anuncio'
     }]
 }, {
     timestamps: true

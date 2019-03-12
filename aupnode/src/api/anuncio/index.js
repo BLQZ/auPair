@@ -1,7 +1,7 @@
 import { Router } from 'express'
 import { middleware as query } from 'querymen'
 import { middleware as body } from 'bodymen'
-import { master } from '../../services/passport'
+import { master, token } from '../../services/passport'
 import { create, index, show, update, destroy } from './controller'
 import { schema } from './model'
 export Anuncio, { schema }
@@ -24,8 +24,8 @@ const { contenido, ownerId } = schema.tree
  * @apiError 401 master access only.
  */
 router.post('/',
-    master(),
-    body({ contenido, ownerId }),
+    token({ required: true }),
+    body({ contenido }),
     create)
 
 /**
