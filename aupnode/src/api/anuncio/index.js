@@ -81,7 +81,7 @@ router.put('/:id',
  * @apiError 401 master access only.
  */
 router.delete('/:id',
-    master(),
+    token({ required: true }),
     destroy)
 
 export default router

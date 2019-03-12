@@ -107,13 +107,13 @@
 					"type": "basic",
 					"basic": [
 						{
-							"key": "password",
-							"value": "123456",
+							"key": "username",
+							"value": "papa@gmail.com",
 							"type": "string"
 						},
 						{
-							"key": "username",
-							"value": "aupair@gmail.com",
+							"key": "password",
+							"value": "123456",
 							"type": "string"
 						}
 					]
@@ -186,18 +186,19 @@
 					"urlencoded": [
 						{
 							"key": "contenido",
-							"value": "Soy un estudiante de Diseño, y quiero inciar un master en París, pero no puedo permitirme alojamiento, me gustan mucho los niños y los perros.",
+							"value": "ojo2 ",
 							"type": "text"
 						},
 						{
 							"key": "ownerId",
 							"value": "5c86b9d5fcbf2f002371c905",
-							"type": "text"
+							"type": "text",
+							"disabled": true
 						}
 					]
 				},
 				"url": {
-					"raw": "{{UrlLocal}}/anuncios?access_token={{MasterKeyAUP}}",
+					"raw": "{{UrlLocal}}/anuncios?access_token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjVjODc3YTYzMDAxNGMyMDAyMzI2YWUyMyIsImlhdCI6MTU1MjQxNDcyM30.v6DM0mmNhAkmotpXrkCsSjMlUW4LhjGos5gROfz7GmI",
 					"host": [
 						"{{UrlLocal}}"
 					],
@@ -207,7 +208,90 @@
 					"query": [
 						{
 							"key": "access_token",
+							"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjVjODc3YTYzMDAxNGMyMDAyMzI2YWUyMyIsImlhdCI6MTU1MjQxNDcyM30.v6DM0mmNhAkmotpXrkCsSjMlUW4LhjGos5gROfz7GmI"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "GetMe",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": ""
+				},
+				"url": {
+					"raw": "{{UrlHeroku}}/users/me?access_token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjVjODY5ZWZhZTRkM2Q1MDAyM2U2MTFiYyIsImlhdCI6MTU1MjQxNzI3MX0.4qvr3PEAfM99M6Fi3qpHt5fIBZYeJtosy_kewlaXxKk",
+					"host": [
+						"{{UrlHeroku}}"
+					],
+					"path": [
+						"users",
+						"me"
+					],
+					"query": [
+						{
+							"key": "access_token",
+							"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjVjODY5ZWZhZTRkM2Q1MDAyM2U2MTFiYyIsImlhdCI6MTU1MjQxNzI3MX0.4qvr3PEAfM99M6Fi3qpHt5fIBZYeJtosy_kewlaXxKk"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "List Anuncios",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": ""
+				},
+				"url": {
+					"raw": "{{UrlHeroku}}/anuncios?access_token={{MasterKeyAUP}}",
+					"host": [
+						"{{UrlHeroku}}"
+					],
+					"path": [
+						"anuncios"
+					],
+					"query": [
+						{
+							"key": "access_token",
 							"value": "{{MasterKeyAUP}}"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Delete Anuncio",
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": ""
+				},
+				"url": {
+					"raw": "{{UrlHeroku}}/anuncios/5c87f77a74b32c3d62eee47f?access_token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjVjODY5ZWZhZTRkM2Q1MDAyM2U2MTFiYyIsImlhdCI6MTU1MjQxNzI3MX0.4qvr3PEAfM99M6Fi3qpHt5fIBZYeJtosy_kewlaXxKk",
+					"host": [
+						"{{UrlHeroku}}"
+					],
+					"path": [
+						"anuncios",
+						"5c87f77a74b32c3d62eee47f"
+					],
+					"query": [
+						{
+							"key": "access_token",
+							"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjVjODY5ZWZhZTRkM2Q1MDAyM2U2MTFiYyIsImlhdCI6MTU1MjQxNzI3MX0.4qvr3PEAfM99M6Fi3qpHt5fIBZYeJtosy_kewlaXxKk"
 						}
 					]
 				}
@@ -239,19 +323,19 @@
 	],
 	"variable": [
 		{
-			"id": "8c718801-4ed7-46ea-8b9d-f6d8c4c4208b",
+			"id": "0d191fca-f8b9-4a13-a90a-d4750edd1620",
 			"key": "UrlLocal",
 			"value": "http://localhost:9000",
 			"type": "string"
 		},
 		{
-			"id": "33bf39f0-a698-4427-919a-374cc8185ada",
+			"id": "2c78acae-80f5-407d-8a7e-efbdaef77831",
 			"key": "MasterKeyAUP",
 			"value": "4JeZTCtYMb9PIyFN0juQY3FMP8Hdrt6Q",
 			"type": "string"
 		},
 		{
-			"id": "1e8eba89-e31f-4566-9674-57fb093e4131",
+			"id": "17514f13-2508-4330-8b9a-abc198c25961",
 			"key": "UrlHeroku",
 			"value": "https://aupairs.herokuapp.com",
 			"type": "string"

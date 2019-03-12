@@ -1,4 +1,4 @@
-import { success, notFound } from '../../services/response/'
+import { success, notFound, authorOrAdmin } from '../../services/response/'
 import { Anuncio } from '.'
 import { User } from '../user'
 
@@ -56,9 +56,22 @@ export const update = ({ bodymen: { body }, params }, res, next) =>
     .then(success(res))
     .catch(next)
 
-export const destroy = ({ params }, res, next) =>
-    Anuncio.findById(params.id)
-    .then(notFound(res))
-    .then((anuncio) => anuncio ? anuncio.remove() : null)
-    .then(success(res, 204))
-    .catch(next)
+export const destroy = async({ user, params }, res, next) => {
+    await Anuncio.findById(params.id)
+        .then(notFound(res))
+        .then(authorOrAdmin(res, user, 'ownerId'))
+        .then((anuncio) => anuncio ? anuncio.remove() : null)
+        .then(success(res, 204))
+        .catch(next)
+
+    await User.findByIdAndUpdate(user.id, { $pull: { anuncios: params.id } }, { new: true })
+        .then(success(res, 200))
+        .catch(next)
+}
+
+
+// Anuncio.findById(params.id)
+//     .then(notFound(res))
+//     .then((anuncio) => anuncio ? anuncio.remove() : null)
+//     .then(success(res, 204))
+//     .catch(next)
