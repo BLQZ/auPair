@@ -151,7 +151,7 @@ public class UserDto {
     }
 
     public UserDto(String email, String password, String name, String picture, String role,
-                   String address, String city, String province, String country, boolean male, int nHijos) {
+                   String address, String city, String province, String country, boolean male, int nHijos, Date date) {
         this.email = email;
         this.password = password;
         this.name = name;
@@ -163,6 +163,7 @@ public class UserDto {
         this.country = country;
         this.male = male;
         this.nHijos = nHijos;
+        this.date = date;
     }
 
     public UserDto(String email, String password, String name) {

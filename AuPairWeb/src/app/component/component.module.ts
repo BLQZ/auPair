@@ -11,11 +11,11 @@ import { MatCardModule } from '@angular/material/card';
 import { FlexLayoutModule } from '@angular/flex-layout';
 import { MatIconModule } from '@angular/material/icon';
 import { MatListModule } from '@angular/material/list';
-import { MatRadioModule, MatButtonModule, MatChipsModule, MatSnackBarModule, MatDialogModule } from '@angular/material';
+import { MatRadioModule, MatButtonModule, MatChipsModule, MatSnackBarModule, MatDialogModule, MatToolbarModule } from '@angular/material';
 import {MatPaginatorModule} from '@angular/material/paginator';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { NgxPaginationModule } from 'ngx-pagination';
-import { routes } from '../app-routing.module';
+import { routes } from './component-routing.module';
 
 @NgModule({
   declarations: [TablaUsuariosComponent],
@@ -38,7 +38,8 @@ import { routes } from '../app-routing.module';
     MatChipsModule,
     MatPaginatorModule,
     MatSnackBarModule,
-    MatDialogModule
+    MatDialogModule,
+    MatToolbarModule
   ]
 })
 export class ComponentModule { }

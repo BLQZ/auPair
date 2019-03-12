@@ -8,7 +8,7 @@ export User, { schema }
 from './model'
 
 const router = new Router()
-const { email, password, name, picture, role, address, city, province, country, male, nHijos } = schema.tree
+const { email, password, name, picture, role, address, city, province, country, male, nHijos, date } = schema.tree
 
 /**
  * @api {get} /users Retrieve users
@@ -67,7 +67,7 @@ router.get('/:id',
  */
 router.post('/',
     master(),
-    body({ email, password, name, picture, role, address, city, province, country, male, nHijos }),
+    body({ email, password, name, picture, role, address, city, province, country, male, nHijos, date }),
     create)
 
 /**

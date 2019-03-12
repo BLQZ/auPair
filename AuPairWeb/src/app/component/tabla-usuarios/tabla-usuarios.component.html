@@ -12,6 +12,31 @@
             <td mat-cell *matCellDef="let usuario">{{usuario.email}}</td>
         </ng-container>
 
+        <ng-container matColumnDef="role">
+            <th mat-header-cell *matHeaderCellDef>Rol</th>
+            <td mat-cell *matCellDef="let usuario">{{usuario.role}}</td>
+        </ng-container>
+
+        <ng-container matColumnDef="address">
+            <th mat-header-cell *matHeaderCellDef>Dirección</th>
+            <td mat-cell *matCellDef="let usuario">{{usuario.address}}</td>
+        </ng-container>
+
+        <ng-container matColumnDef="city">
+            <th mat-header-cell *matHeaderCellDef>Ciudad</th>
+            <td mat-cell *matCellDef="let usuario">{{usuario.city}}, {{usuario.province}} ({{usuario.country}})</td>
+        </ng-container>
+
+        <ng-container matColumnDef="nHijos">
+            <th mat-header-cell *matHeaderCellDef>NºHijos</th>
+            <td mat-cell *matCellDef="let usuario">{{usuario.nHijos}}</td>
+        </ng-container>
+
+        <ng-container matColumnDef="date">
+            <th mat-header-cell *matHeaderCellDef>Date</th>
+            <td mat-cell *matCellDef="let usuario">{{usuario.date}}</td>
+        </ng-container>
+
         <ng-container matColumnDef="acciones">
             <th mat-header-cell *matHeaderCellDef>Acciones</th>
             <td mat-cell *matCellDef="let usuario">

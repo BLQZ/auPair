@@ -1,6 +1,7 @@
 package com.example.aupairapp.Fragments;
 
 import android.app.Activity;
+import android.app.DatePickerDialog;
 import android.app.Service;
 import android.content.Context;
 import android.content.Intent;
@@ -13,6 +14,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.DatePicker;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.RadioButton;
@@ -20,6 +22,7 @@ import android.widget.RadioGroup;
 import android.widget.Toast;
 
 import com.bumptech.glide.Glide;
+import com.example.aupairapp.Dialogs.DatePickerFragment;
 import com.example.aupairapp.Generator.ServiceGenerator;
 import com.example.aupairapp.Generator.UtilUser;
 import com.example.aupairapp.MainActivity;
@@ -34,6 +37,9 @@ import java.io.ByteArrayOutputStream;
 import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.io.InputStream;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 
 import okhttp3.MediaType;
 import okhttp3.MultipartBody;
@@ -62,7 +68,8 @@ public class SignupFragment extends Fragment {
     private String mParam2;
 
     private OnFragmentInteractionListener mListener;
-    private EditText etEmail, etNombre, etPassword, etPasswordRep, etCity, etProvince, etCountry, etAddress, etDate, etDescription;
+    private EditText etEmail, etNombre, etPassword, etPasswordRep, etCity,
+            etProvince, etCountry, etAddress, etDate, etDescription, etHijos;
     /*private CircleImageView ivImagenPerfil;*/
     private ImageView ivImagenPerfil;
     private Button btnSubirImagen;
@@ -123,6 +130,7 @@ public class SignupFragment extends Fragment {
         btnB = view.findViewById(R.id.fb2);
         btnPrevious = view.findViewById(R.id.btnPrevious);
         btnRegistro = view.findViewById(R.id.btnSignup);
+        etHijos = view.findViewById(R.id.etHijos);
 
         etCity.setVisibility(View.INVISIBLE);
         etProvince.setVisibility(View.INVISIBLE);
@@ -134,6 +142,7 @@ public class SignupFragment extends Fragment {
         btnB.setEnabled(false);
         btnPrevious.setVisibility(View.INVISIBLE);
         btnRegistro.setVisibility(View.INVISIBLE);
+        etHijos.setVisibility(View.INVISIBLE);
 
         btnNext.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -159,6 +168,17 @@ public class SignupFragment extends Fragment {
                 btnB.setEnabled(true);
                 btnPrevious.setVisibility(View.VISIBLE);
                 btnRegistro.setVisibility(View.VISIBLE);
+                if(rbAupair.isChecked())
+                    etHijos.setVisibility(View.INVISIBLE);
+                else
+                    etHijos.setVisibility(View.VISIBLE);
+            }
+        });
+
+        etDate.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                showDatePickerDialog();
             }
         });
 
@@ -186,6 +206,7 @@ public class SignupFragment extends Fragment {
                 btnB.setEnabled(false);
                 btnPrevious.setVisibility(View.INVISIBLE);
                 btnRegistro.setVisibility(View.INVISIBLE);
+                etHijos.setVisibility(View.INVISIBLE);
             }
         });
 
@@ -261,6 +282,18 @@ public class SignupFragment extends Fragment {
      */
     public interface OnFragmentInteractionListener {
         void navegarLogin();
+    }
+
+    private void showDatePickerDialog() {
+        DatePickerFragment newFragment = DatePickerFragment.newInstance(new DatePickerDialog.OnDateSetListener() {
+            @Override
+            public void onDateSet(DatePicker datePicker, int year, int month, int day) {
+                // +1 because january is zero
+                final String selectedDate = day + " / " + (month+1) + " / " + year;
+                etDate.setText(selectedDate);
+            }
+        });
+        newFragment.show(getActivity().getSupportFragmentManager(), "datePicker");
     }
 
     public void doRegister(){
@@ -384,10 +417,25 @@ public class SignupFragment extends Fragment {
     Boolean validarString (RequestBody texto) {
         return texto != null && texto.toString().length() >0;
     }
+    public static Date parseFecha(String fecha)
+    {
+        SimpleDateFormat formato = new SimpleDateFormat("dd / MM / yyyy");
+        Date fechaDate = null;
+        try {
+            fechaDate = formato.parse(fecha);
+        }
+        catch (ParseException ex)
+        {
+            System.out.println(ex);
+        }
+        return fechaDate;
+    }
 
     public void register(){
 
         UserDto user;
+        Date fecha = parseFecha(etDate.getText().toString());
+        Log.d("FEcha:", fecha.toString());
 
         if(rbAupair.isChecked()){
             if(rbMale.isChecked()){
@@ -398,7 +446,7 @@ public class SignupFragment extends Fragment {
             user = new UserDto(etEmail.getText().toString(), etPassword.getText().toString(), etNombre.getText().toString(),
                     "http://www.paravivirenirlanda.com/wp-content/uploads/2017/02/Au-pair.jpg", "aupair",
                     etAddress.getText().toString(), etCity.getText().toString(), etProvince.getText().toString(), etCountry.getText().toString(),
-                    male, 2);
+                    male, 2, fecha);
         } else {
             if(rbMale.isChecked()){
                 male=true;
@@ -408,7 +456,7 @@ public class SignupFragment extends Fragment {
             user = new UserDto(etEmail.getText().toString(), etPassword.getText().toString(), etNombre.getText().toString(),
                     "http://www.paravivirenirlanda.com/wp-content/uploads/2017/02/Au-pair.jpg", "family",
                     etAddress.getText().toString(), etCity.getText().toString(), etProvince.getText().toString(), etCountry.getText().toString(),
-                    male, 2);
+                    male, 2, fecha);
         }
 
         AuthService service = ServiceGenerator.createService(AuthService.class);

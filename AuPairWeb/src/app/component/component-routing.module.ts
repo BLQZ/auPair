@@ -2,7 +2,7 @@ import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 import { TablaUsuariosComponent } from './tabla-usuarios/tabla-usuarios.component';
 
-const routes: Routes = [
+export const routes: Routes = [
   {
     path: '',
     children: [

@@ -16,7 +16,7 @@ export class TablaUsuariosComponent implements OnInit {
 
   listaApi: ListApiResponse;
   listaUsuariosRes: ListUsuariosResponse[];
-  displayedColumns: string[] = ['username', 'email', 'acciones'];
+  displayedColumns: string[] = ['username', 'email', 'role', 'address', 'city', 'date', 'nHijos', 'date', 'acciones'];
   dataSource = new MatTableDataSource<ListUsuariosResponse[]>();
   @ViewChild(MatPaginator) paginator: MatPaginator;
 
@@ -50,6 +50,10 @@ export class TablaUsuariosComponent implements OnInit {
       this.listUser();
     }, error => console.error(error)
     );
+  }
+
+  applyFilter(filterValue: string) {
+    this.dataSource.filter = filterValue.trim().toLowerCase();
   }
 
 }

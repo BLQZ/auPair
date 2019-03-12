@@ -32,7 +32,8 @@
             android:text="aupair@gmail.com"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/imageView" />
+            app:layout_constraintTop_toBottomOf="@+id/imageView"
+            android:backgroundTint="@color/colorPrimary" />
 
         <EditText
             android:id="@+id/etPassword"
@@ -44,7 +45,8 @@
             android:text="123456"
             app:layout_constraintEnd_toEndOf="@+id/etEmail"
             app:layout_constraintStart_toStartOf="@+id/etEmail"
-            app:layout_constraintTop_toBottomOf="@+id/etEmail" />
+            app:layout_constraintTop_toBottomOf="@+id/etEmail"
+            android:backgroundTint="@color/colorPrimary" />
 
         <Button
             android:id="@+id/btnLogin"

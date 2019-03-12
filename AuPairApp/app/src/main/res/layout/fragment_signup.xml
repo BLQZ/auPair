@@ -43,7 +43,8 @@
             android:inputType="textPersonName"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/imageView2" />
+            app:layout_constraintTop_toBottomOf="@+id/imageView2"
+            android:backgroundTint="@color/colorPrimary"/>
 
         <EditText
             android:id="@+id/editTextEmailRegistro"
@@ -55,7 +56,8 @@
             android:inputType="textPersonName"
             app:layout_constraintEnd_toEndOf="@+id/editTextNombreRegistro"
             app:layout_constraintStart_toStartOf="@+id/editTextNombreRegistro"
-            app:layout_constraintTop_toBottomOf="@+id/editTextNombreRegistro" />
+            app:layout_constraintTop_toBottomOf="@+id/editTextNombreRegistro"
+            android:backgroundTint="@color/colorPrimary" />
 
         <EditText
             android:id="@+id/editTextPasswordRegistro"
@@ -67,7 +69,8 @@
             android:inputType="textPassword"
             app:layout_constraintEnd_toEndOf="@+id/editTextEmailRegistro"
             app:layout_constraintStart_toStartOf="@+id/editTextEmailRegistro"
-            app:layout_constraintTop_toBottomOf="@+id/editTextEmailRegistro" />
+            app:layout_constraintTop_toBottomOf="@+id/editTextEmailRegistro"
+            android:backgroundTint="@color/colorPrimary" />
 
         <EditText
             android:id="@+id/editTextPasswordRepeat"
@@ -79,7 +82,8 @@
             android:inputType="textPassword"
             app:layout_constraintEnd_toEndOf="@+id/editTextPasswordRegistro"
             app:layout_constraintStart_toStartOf="@+id/editTextPasswordRegistro"
-            app:layout_constraintTop_toBottomOf="@+id/editTextPasswordRegistro" />
+            app:layout_constraintTop_toBottomOf="@+id/editTextPasswordRegistro"
+            android:backgroundTint="@color/colorPrimary" />
 
         <Button
             android:id="@+id/buttonRegistroaLogin"
@@ -100,7 +104,7 @@
             android:layout_marginTop="8dp"
             android:layout_marginEnd="8dp"
             android:layout_marginBottom="8dp"
-            android:text="Datos Personales"
+            android:text="Formulario Registro"
             android:textAlignment="center"
             android:textAllCaps="false"
             android:textColor="@color/colorPrimary"
@@ -172,7 +176,8 @@
             android:hint="Ciudad"
             android:inputType="textPersonName"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/imageView2" />
+            app:layout_constraintTop_toBottomOf="@+id/imageView2"
+            android:backgroundTint="@color/colorPrimary" />
 
         <EditText
             android:id="@+id/etProvince"
@@ -184,7 +189,8 @@
             android:hint="Provincia"
             android:inputType="textPersonName"
             app:layout_constraintEnd_toEndOf="@+id/editTextNombreRegistro"
-            app:layout_constraintTop_toBottomOf="@+id/imageView2" />
+            app:layout_constraintTop_toBottomOf="@+id/imageView2"
+            android:backgroundTint="@color/colorPrimary" />
 
         <EditText
             android:id="@+id/etCountry"
@@ -196,7 +202,8 @@
             android:inputType="textPersonName"
             app:layout_constraintEnd_toEndOf="@+id/etCity"
             app:layout_constraintStart_toStartOf="@+id/etCity"
-            app:layout_constraintTop_toBottomOf="@+id/etCity" />
+            app:layout_constraintTop_toBottomOf="@+id/etCity"
+            android:backgroundTint="@color/colorPrimary" />
 
         <EditText
             android:id="@+id/etDate"
@@ -206,9 +213,12 @@
             android:ems="10"
             android:hint="F. Nacimiento"
             android:inputType="date"
+            android:focusable="false"
+            android:clickable="true"
             app:layout_constraintEnd_toEndOf="@+id/etProvince"
             app:layout_constraintStart_toStartOf="@+id/etProvince"
-            app:layout_constraintTop_toBottomOf="@+id/etProvince" />
+            app:layout_constraintTop_toBottomOf="@+id/etProvince"
+            android:backgroundTint="@color/colorPrimary" />
 
         <EditText
             android:id="@+id/etAddress"
@@ -220,7 +230,8 @@
             android:inputType="textPersonName"
             app:layout_constraintEnd_toEndOf="@+id/etDate"
             app:layout_constraintStart_toStartOf="@+id/etCountry"
-            app:layout_constraintTop_toBottomOf="@+id/etCountry" />
+            app:layout_constraintTop_toBottomOf="@+id/etCountry"
+            android:backgroundTint="@color/colorPrimary" />
 
         <EditText
             android:id="@+id/etDescription"
@@ -232,7 +243,8 @@
             android:inputType="textMultiLine"
             app:layout_constraintEnd_toEndOf="@+id/etAddress"
             app:layout_constraintStart_toStartOf="@+id/etAddress"
-            app:layout_constraintTop_toBottomOf="@+id/editTextPasswordRegistro" />
+            app:layout_constraintTop_toBottomOf="@+id/editTextPasswordRegistro"
+            android:backgroundTint="@color/colorPrimary" />
 
         <RadioGroup
             android:id="@+id/role"
@@ -291,6 +303,19 @@
                 android:text="Mujer"
                 android:buttonTint="@color/colorPrimary" />
         </RadioGroup>
+
+        <EditText
+            android:id="@+id/etHijos"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:ems="10"
+            android:hint="Nº Hijos"
+            android:inputType="numberSigned"
+            app:layout_constraintEnd_toEndOf="@+id/etDescription"
+            app:layout_constraintStart_toStartOf="@+id/etDescription"
+            app:layout_constraintTop_toBottomOf="@+id/etDescription"
+            android:backgroundTint="@color/colorPrimary" />
 
     </android.support.constraint.ConstraintLayout>
 
