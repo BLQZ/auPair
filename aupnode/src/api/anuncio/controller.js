@@ -19,7 +19,7 @@ export const create = async({ user, bodymen: { body } }, res, next) => {
         .then(success(res, 201))
         .catch(next)
 
-    await User.findOneAndUpdate(user.id, { $addToSet: { anuncios: id } }, { new: true })
+    await User.findByIdAndUpdate(user.id, { $addToSet: { anuncios: id } }, { new: true })
         .then(success(res, 200))
         .catch(next)
 }
