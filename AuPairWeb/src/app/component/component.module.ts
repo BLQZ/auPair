@@ -16,9 +16,10 @@ import {MatPaginatorModule} from '@angular/material/paginator';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { NgxPaginationModule } from 'ngx-pagination';
 import { routes } from './component-routing.module';
+import { TablaAnunciosComponent } from './tabla-anuncios/tabla-anuncios.component';
 
 @NgModule({
-  declarations: [TablaUsuariosComponent],
+  declarations: [TablaUsuariosComponent, TablaAnunciosComponent],
   imports: [
     CommonModule,
     ComponentRoutingModule,

@@ -30,16 +30,28 @@ export const create = async({ user, bodymen: { body } }, res, next) => {
 //     .then(success(res, 200))
 //     .catch(next)
 
-export const index = ({ querymen: { query, select, cursor } }, res, next) =>
-    Anuncio.count(query)
-    .then(count => Anuncio.find(query, select, cursor)
-        .then((anuncios) => ({
-            count,
-            rows: anuncios.map((anuncio) => anuncio.view())
+// export const index = ({ querymen: { query, select, cursor } }, res, next) =>
+//     Anuncio.count(query)
+//     .then(count => Anuncio.find(query, select, cursor)
+//         .then((anuncios) => ({
+//             count,
+//             rows: anuncios.map((anuncio) => anuncio.view(true))
+//         }))
+//     )
+//     .then(success(res))
+//     .catch(next)
+
+export const index = ({ params, querymen: { query, select, cursor } }, res, next) => {
+    Anuncio
+        .find(query, select, cursor)
+        .populate('ownerId', 'name picture role')
+        .then((result) => ({
+            count: result.length,
+            rows: result
         }))
-    )
-    .then(success(res))
-    .catch(next)
+        .then(success(res))
+        .catch(next)
+}
 
 export const show = ({ params }, res, next) =>
     Anuncio.findById(params.id)

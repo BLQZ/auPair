@@ -1,5 +1,5 @@
 import { Router } from 'express'
-import { middleware as query } from 'querymen'
+import { middleware as query, Schema } from 'querymen'
 import { middleware as body } from 'bodymen'
 import { master, token } from '../../services/passport'
 import { create, index, show, update, destroy } from './controller'
@@ -9,6 +9,17 @@ from './model'
 
 const router = new Router()
 const { contenido, ownerId } = schema.tree
+
+const anunciosSchema = new Schema({
+    contenido: {
+        type: [String],
+        paths: ['contenido']
+    },
+    ownerId: {
+        type: [String],
+        paths: [ownerId]
+    }
+})
 
 /**
  * @api {post} /anuncios Create anuncio
@@ -38,7 +49,8 @@ router.post('/',
  * @apiError {Object} 400 Some parameters may contain invalid values.
  */
 router.get('/',
-    query(),
+    master(),
+    query(anunciosSchema),
     index)
 
 /**
