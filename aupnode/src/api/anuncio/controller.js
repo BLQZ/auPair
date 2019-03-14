@@ -44,7 +44,7 @@ export const create = async({ user, bodymen: { body } }, res, next) => {
 export const index = ({ params, querymen: { query, select, cursor } }, res, next) => {
     Anuncio
         .find(query, select, cursor)
-        .populate('ownerId', 'name picture role')
+        .populate('ownerId', 'name picture role email')
         .then((result) => ({
             count: result.length,
             rows: result

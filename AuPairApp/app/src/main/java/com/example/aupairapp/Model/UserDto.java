@@ -166,6 +166,21 @@ public class UserDto {
         this.date = date;
     }
 
+    public UserDto(String email, String password, String name, String role,
+                   String address, String city, String province, String country, boolean male, int nHijos, Date date) {
+        this.email = email;
+        this.password = password;
+        this.name = name;
+        this.role = role;
+        this.address = address;
+        this.city = city;
+        this.province = province;
+        this.country = country;
+        this.male = male;
+        this.nHijos = nHijos;
+        this.date = date;
+    }
+
     public UserDto(String email, String password, String name) {
         this.email = email;
         this.password = password;

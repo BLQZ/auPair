@@ -443,8 +443,7 @@ public class SignupFragment extends Fragment {
             } else {
                 male=false;
             }
-            user = new UserDto(etEmail.getText().toString(), etPassword.getText().toString(), etNombre.getText().toString(),
-                    "http://www.paravivirenirlanda.com/wp-content/uploads/2017/02/Au-pair.jpg", "aupair",
+            user = new UserDto(etEmail.getText().toString(), etPassword.getText().toString(), etNombre.getText().toString(), "aupair",
                     etAddress.getText().toString(), etCity.getText().toString(), etProvince.getText().toString(), etCountry.getText().toString(),
                     male, 2, fecha);
         } else {
@@ -453,8 +452,7 @@ public class SignupFragment extends Fragment {
             } else {
                 male=false;
             }
-            user = new UserDto(etEmail.getText().toString(), etPassword.getText().toString(), etNombre.getText().toString(),
-                    "http://www.paravivirenirlanda.com/wp-content/uploads/2017/02/Au-pair.jpg", "family",
+            user = new UserDto(etEmail.getText().toString(), etPassword.getText().toString(), etNombre.getText().toString(), "family",
                     etAddress.getText().toString(), etCity.getText().toString(), etProvince.getText().toString(), etCountry.getText().toString(),
                     male, 2, fecha);
         }

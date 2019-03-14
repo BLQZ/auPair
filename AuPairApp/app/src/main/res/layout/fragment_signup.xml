@@ -23,7 +23,6 @@
             android:id="@+id/btnNext"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:layout_marginStart="8dp"
             android:layout_marginBottom="8dp"
             android:background="@color/colorPrimary"
             android:text="@string/nextRegistro"
