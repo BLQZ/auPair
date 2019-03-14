@@ -12,3 +12,8 @@ mat-toolbar {
     margin-bottom: 1%;
     background-color: #443B95!important;
 }
+
+span,
+i {
+    cursor: pointer;
+}

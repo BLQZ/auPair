@@ -2,6 +2,9 @@
     <mat-toolbar-row>
         <span>Au Pair - Administración</span>
         <span class="example-spacer"></span>
+        <span (click)="irAnuncios()">ANUNCIOS</span>&nbsp;&nbsp;&nbsp;
+        <span (click)="irUsuarios()">USUARIOS</span>&nbsp;&nbsp;&nbsp;
+        <i class="material-icons" (click)="logout()">power_settings_new</i>
     </mat-toolbar-row>
 </mat-toolbar>
 <router-outlet></router-outlet>

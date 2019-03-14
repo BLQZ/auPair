@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-toolbar',
@@ -7,9 +8,22 @@ import { Component, OnInit } from '@angular/core';
 })
 export class ToolbarComponent implements OnInit {
 
-  constructor() { }
+  constructor(private router: Router) { }
 
   ngOnInit() {
+  }
+
+  irAnuncios(){
+    this.router.navigate(['/component/tablaAnuncios']);
+  }
+
+  irUsuarios(){
+    this.router.navigate(['/component/tablaUsuarios']);
+  }
+
+  logout(){
+    this.router.navigate(['session/login']);
+    localStorage.removeItem('token');
   }
 
 }
