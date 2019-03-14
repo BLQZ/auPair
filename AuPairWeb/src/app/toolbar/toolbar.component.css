@@ -10,4 +10,5 @@ mat-toolbar {
     width: 100vw;
     margin: 0 auto;
     margin-bottom: 1%;
+    background-color: #443B95!important;
 }

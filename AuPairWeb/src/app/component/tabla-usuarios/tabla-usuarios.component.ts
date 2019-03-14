@@ -16,7 +16,7 @@ export class TablaUsuariosComponent implements OnInit {
 
   listaApi: ListApiResponse;
   listaUsuariosRes: ListUsuariosResponse[];
-  displayedColumns: string[] = ['username', 'email', 'role', 'address', 'city', 'date', 'nHijos', 'date', 'acciones'];
+  displayedColumns: string[] = ['username', 'email', 'role', 'address', 'city', 'nHijos', 'date', 'acciones'];
   dataSource = new MatTableDataSource<ListUsuariosResponse[]>();
   @ViewChild(MatPaginator) paginator: MatPaginator;
 

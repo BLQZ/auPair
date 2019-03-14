@@ -40,7 +40,8 @@ import { TablaAnunciosComponent } from './tabla-anuncios/tabla-anuncios.componen
     MatPaginatorModule,
     MatSnackBarModule,
     MatDialogModule,
-    MatToolbarModule
+    MatToolbarModule,
+    MatChipsModule
   ]
 })
 export class ComponentModule { }

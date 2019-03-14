@@ -1,53 +1,60 @@
-<div fxFlex="100%" fxFlexFill>
-    <input matInput (keyup)="applyFilter($event.target.value)" placeholder="Filtro">
-    <table mat-table [dataSource]="dataSource" class="mat-elevation-z8" fxFlexFill>
+<div fxLayoutAlign="center center">
+    <div fxFlex="95%" fxFlexFill fxLayout="column" fxLayoutAlign="center">
+        <input matInput (keyup)="applyFilter($event.target.value)" placeholder="Buscar" style="width: 30%;"><br>
+        <table mat-table [dataSource]="dataSource" class="mat-elevation-z8" fxFlexFill fxFlexAlign="center">
 
-        <ng-container matColumnDef="username">
-            <th mat-header-cell *matHeaderCellDef>Nombre</th>
-            <td mat-cell *matCellDef="let usuario">{{usuario.name}}</td>
-        </ng-container>
+            <ng-container matColumnDef="username">
+                <th mat-header-cell *matHeaderCellDef>Nombre</th>
+                <td mat-cell *matCellDef="let usuario">{{usuario.name}}</td>
+            </ng-container>
 
-        <ng-container matColumnDef="email">
-            <th mat-header-cell *matHeaderCellDef>Email</th>
-            <td mat-cell *matCellDef="let usuario">{{usuario.email}}</td>
-        </ng-container>
+            <ng-container matColumnDef="email">
+                <th mat-header-cell *matHeaderCellDef>Email</th>
+                <td mat-cell *matCellDef="let usuario">{{usuario.email}}</td>
+            </ng-container>
 
-        <ng-container matColumnDef="role">
-            <th mat-header-cell *matHeaderCellDef>Rol</th>
-            <td mat-cell *matCellDef="let usuario">{{usuario.role}}</td>
-        </ng-container>
+            <ng-container matColumnDef="role">
+                <th mat-header-cell *matHeaderCellDef>Rol</th>
+                <td mat-cell *matCellDef="let usuario">
+                    <mat-chip-list>
+                        <mat-chip class="aupair" *ngIf="usuario.role == 'aupair'">{{usuario.role}}</mat-chip>
+                        <mat-chip class="admin" *ngIf="usuario.role == 'admin'">{{usuario.role}}</mat-chip>
+                        <mat-chip class="family" *ngIf="usuario.role == 'family'">{{usuario.role}}</mat-chip>
+                    </mat-chip-list>
+                </td>
+            </ng-container>
 
-        <ng-container matColumnDef="address">
-            <th mat-header-cell *matHeaderCellDef>Dirección</th>
-            <td mat-cell *matCellDef="let usuario">{{usuario.address}}</td>
-        </ng-container>
+            <ng-container matColumnDef="address">
+                <th mat-header-cell *matHeaderCellDef>Dirección</th>
+                <td mat-cell *matCellDef="let usuario">{{usuario.address}}</td>
+            </ng-container>
 
-        <ng-container matColumnDef="city">
-            <th mat-header-cell *matHeaderCellDef>Ciudad</th>
-            <td mat-cell *matCellDef="let usuario">{{usuario.city}}, {{usuario.province}} ({{usuario.country}})</td>
-        </ng-container>
+            <ng-container matColumnDef="city">
+                <th mat-header-cell *matHeaderCellDef>Ciudad</th>
+                <td mat-cell *matCellDef="let usuario">{{usuario.city}}, {{usuario.province}} ({{usuario.country}})</td>
+            </ng-container>
 
-        <ng-container matColumnDef="nHijos">
-            <th mat-header-cell *matHeaderCellDef>NºHijos</th>
-            <td mat-cell *matCellDef="let usuario">{{usuario.nHijos}}</td>
-        </ng-container>
+            <ng-container matColumnDef="nHijos">
+                <th mat-header-cell *matHeaderCellDef>NºHijos</th>
+                <td mat-cell *matCellDef="let usuario">{{usuario.nHijos}}</td>
+            </ng-container>
 
-        <ng-container matColumnDef="date">
-            <th mat-header-cell *matHeaderCellDef>Date</th>
-            <td mat-cell *matCellDef="let usuario">{{usuario.date}}</td>
-        </ng-container>
+            <ng-container matColumnDef="date">
+                <th mat-header-cell *matHeaderCellDef>Date</th>
+                <td mat-cell *matCellDef="let usuario">{{usuario.date}}</td>
+            </ng-container>
 
-        <ng-container matColumnDef="acciones">
-            <th mat-header-cell *matHeaderCellDef>Acciones</th>
-            <td mat-cell *matCellDef="let usuario">
-                <button mat-raised-button color="error" (click)="deleteUsuario(usuario)"><i
-            class="material-icons">delete</i></button>
-            </td>
-        </ng-container>
+            <ng-container matColumnDef="acciones">
+                <th mat-header-cell *matHeaderCellDef>Acciones</th>
+                <td mat-cell *matCellDef="let usuario">
+                    <i class="material-icons" id="deleteIcon" (click)="deleteUsuario(usuario)">delete</i>
+                </td>
+            </ng-container>
 
-        <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
-        <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
-    </table>
-
-    <mat-paginator [pageSizeOptions]="[5, 10, 20]" showFirstLastButtons></mat-paginator>
+            <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+            <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+        </table>
+        <br>
+        <mat-paginator [pageSizeOptions]="[5, 10, 20]" showFirstLastButtons></mat-paginator>
+    </div>
 </div>
