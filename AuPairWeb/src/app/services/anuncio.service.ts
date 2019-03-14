@@ -31,4 +31,16 @@ export class AnuncioService {
     return this.http.get<ListApiResponse>(`${environment.ApiUrl}anuncios`, requestOptions);
 
   }
+
+  deleteAnuncio(id: String) {
+    const requestOptions = {
+      headers: new HttpHeaders({
+        'Content-Type': 'application/json',
+        'Authorization': `Bearer ${localStorage.getItem('token')}`,
+        'Access-Control-Allow-Origin': '*'
+      })
+    };
+
+    return this.http.delete(`${environment.ApiUrl}anuncios/${id}`, requestOptions);
+  }
 }

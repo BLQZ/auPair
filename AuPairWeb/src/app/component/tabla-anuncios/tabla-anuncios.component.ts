@@ -39,6 +39,10 @@ export class TablaAnunciosComponent implements OnInit {
     });
   }
 
+  deleteAnuncio(id: String){
+    this.anuncioService.deleteAnuncio(id).subscribe(result => {this.listAnuncios()})
+  }
+
   applyFilter(filterValue: string) {
     this.dataSource.filter = filterValue.trim().toLowerCase();
   }

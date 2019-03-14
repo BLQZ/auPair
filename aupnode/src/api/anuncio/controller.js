@@ -68,15 +68,20 @@ export const update = ({ bodymen: { body }, params }, res, next) =>
     .then(success(res))
     .catch(next)
 
+var idUser;
+
 export const destroy = async({ user, params }, res, next) => {
     await Anuncio.findById(params.id)
         .then(notFound(res))
         .then(authorOrAdmin(res, user, 'ownerId'))
-        .then((anuncio) => anuncio ? anuncio.remove() : null)
+        .then((anuncio) => {
+            idUser = anuncio.view(true).ownerId;
+            anuncio ? anuncio.remove() : null;
+        })
         .then(success(res, 204))
         .catch(next)
 
-    await User.findByIdAndUpdate(user.id, { $pull: { anuncios: params.id } }, { new: true })
+    await User.findByIdAndUpdate(idUser, { $pull: { anuncios: params.id } }, { new: true })
         .then(success(res, 200))
         .catch(next)
 }
