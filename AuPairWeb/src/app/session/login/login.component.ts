@@ -40,10 +40,9 @@ export class LoginComponent implements OnInit {
       this.router.navigate(['/component/tablaUsuarios']);
 
     }, error => {
-      this.isError = true;
-      setTimeout(() => {
-        this.isError = false;
-      }, 4000);
+      this.snackBar.open(`Acceso único a administradores`, 'X', {
+        duration: 3000
+      });
     }
     );
 

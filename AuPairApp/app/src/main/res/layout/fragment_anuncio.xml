@@ -16,7 +16,7 @@
         android:layout_marginBottom="8dp"
         android:orientation="horizontal"
         app:cardBackgroundColor="@color/colorCard"
-        app:cardCornerRadius="10dp"
+        app:cardCornerRadius="0dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="1.0"
@@ -48,7 +48,9 @@
                 android:layout_marginStart="8dp"
                 android:layout_marginTop="8dp"
                 android:text="TextView"
+                android:textAllCaps="false"
                 android:textColor="@android:color/white"
+                android:textStyle="bold"
                 app:layout_constraintStart_toEndOf="@+id/imgOwner"
                 app:layout_constraintTop_toTopOf="@+id/imgOwner" />
 
@@ -59,7 +61,8 @@
                 android:layout_marginStart="8dp"
                 android:layout_marginBottom="8dp"
                 android:text="TextView"
-                android:textColor="@android:color/white"
+                android:textColor="@color/common_google_signin_btn_text_light_default"
+                android:textStyle="italic"
                 app:layout_constraintBottom_toBottomOf="@+id/imgOwner"
                 app:layout_constraintStart_toEndOf="@+id/imgOwner" />
 

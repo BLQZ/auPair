@@ -33,7 +33,7 @@ export class AuthService {
       }
     }
     const metaKey = new Metakey('4JeZTCtYMb9PIyFN0juQY3FMP8Hdrt6Q');
-    return this.http.post<LoginResponse>(`${environment.ApiUrl}auth`, metaKey, requestOptions);
+    return this.http.post<LoginResponse>(`${environment.ApiUrl}auth/admin`, metaKey, requestOptions);
   }
 
   setLoginData(loginResponse: LoginResponse) {

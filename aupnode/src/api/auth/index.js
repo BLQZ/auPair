@@ -1,5 +1,5 @@
 import { Router } from 'express'
-import { login } from './controller'
+import { login, loginAdmin } from './controller'
 import { password, master, google } from '../../services/passport'
 
 const router = new Router()
@@ -16,9 +16,25 @@ const router = new Router()
  * @apiError 401 Master access only or invalid credentials.
  */
 router.post('/',
-  master(),
-  password(),
-  login)
+    master(),
+    password(),
+    login)
+
+/**
+ * @api {post} /auth Authenticate
+ * @apiName Authenticate
+ * @apiGroup Auth
+ * @apiPermission master
+ * @apiHeader {String} Authorization Basic authorization with email and password.
+ * @apiParam {String} access_token Master access_token.
+ * @apiSuccess (Success 201) {String} token User `access_token` to be passed to other requests.
+ * @apiSuccess (Success 201) {Object} user Current user's data.
+ * @apiError 401 Master access only or invalid credentials.
+ */
+router.post('/admin',
+    master(),
+    password(),
+    loginAdmin)
 
 /**
  * @api {post} /auth/google Authenticate with Google
@@ -30,7 +46,7 @@ router.post('/',
  * @apiError 401 Invalid credentials.
  */
 router.post('/google',
-  google(),
-  login)
+    google(),
+    login)
 
 export default router
