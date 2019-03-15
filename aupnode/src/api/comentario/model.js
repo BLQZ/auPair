@@ -1,17 +1,18 @@
 import mongoose, { Schema } from 'mongoose'
 
-const anuncioSchema = new Schema({
-    contenido: {
-        type: String
-    },
-    ownerId: {
+const comentarioSchema = new Schema({
+    userId: {
         type: mongoose.Schema.Types.ObjectId,
         ref: 'User'
     },
-    comentarios: [{
+    anuncioId: {
         type: mongoose.Schema.Types.ObjectId,
-        ref: 'Comentario'
-    }]
+        ref: 'Anuncio'
+    },
+    contenido: {
+        type: String,
+        required: true
+    }
 }, {
     timestamps: true,
     toJSON: {
@@ -20,14 +21,14 @@ const anuncioSchema = new Schema({
     }
 })
 
-anuncioSchema.methods = {
+comentarioSchema.methods = {
     view(full) {
         const view = {
             // simple view
             id: this.id,
+            userId: this.userId,
+            anuncioId: this.anuncioId,
             contenido: this.contenido,
-            ownerId: this.ownerId,
-            comentarios: this.comentarios,
             createdAt: this.createdAt,
             updatedAt: this.updatedAt
         }
@@ -39,7 +40,7 @@ anuncioSchema.methods = {
     }
 }
 
-const model = mongoose.model('Anuncio', anuncioSchema)
+const model = mongoose.model('Comentario', comentarioSchema)
 
 export const schema = model.schema
 export default model

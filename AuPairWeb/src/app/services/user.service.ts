@@ -48,7 +48,7 @@ export class UserService {
       })
     };
 
-    return this.http.post<User>(`${environment.ApiUrl}/users`, requestOptions);
+    return this.http.post<User>(`${environment.ApiUrl}users`, requestOptions);
   }
   
 }
