@@ -1,6 +1,7 @@
 import { success, notFound } from '../../services/response/'
 import { User } from '.'
 import { sign } from '../../services/jwt'
+import { Anuncio } from '../anuncio'
 
 export const index = ({ querymen: { query, select, cursor } }, res, next) =>
     User.count(query)
@@ -85,9 +86,23 @@ export const updatePassword = ({ bodymen: { body }, params, user }, res, next) =
     .then(success(res))
     .catch(next)
 
-export const destroy = ({ params }, res, next) =>
-    User.findById(params.id)
-    .then(notFound(res))
-    .then((user) => user ? user.remove() : null)
-    .then(success(res, 204))
-    .catch(next)
+var anunciosUser;
+export const destroy = async({ params }, res, next) => {
+
+    await User.findById(params.id)
+        .then(notFound(res))
+        .then((user) => {
+            anunciosUser = user.anuncios;
+            user ? user.remove() : null;
+        })
+        .then(success(res, 204))
+        .catch(next)
+
+    for (var i = 0; i < anunciosUser.length; i++) {
+        await Anuncio.findById(anunciosUser[i])
+            .then(notFound(res))
+            .then((anuncio) => anuncio ? anuncio.remove() : null)
+            .then(success(res, 204))
+            .catch(next)
+    }
+}
