@@ -1,6 +1,7 @@
 <div fxLayoutAlign="center center">
     <div fxFlex="95%" fxFlexFill fxLayout="column" fxLayoutAlign="center">
-        <input matInput (keyup)="applyFilter($event.target.value)" placeholder="Buscar" style="width: 30%;"><br>
+        <input matInput (keyup)="applyFilter($event.target.value)" placeholder="Buscar" style="width: 30%;">&nbsp;&nbsp;
+        <button mat-button style="width: 30%;" (click)="openDialogoAddUser()">Basic</button><br>
         <table mat-table [dataSource]="dataSource" class="mat-elevation-z8" fxFlexFill fxFlexAlign="center">
 
             <ng-container matColumnDef="username">

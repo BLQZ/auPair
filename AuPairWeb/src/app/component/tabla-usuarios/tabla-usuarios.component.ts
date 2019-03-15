@@ -6,6 +6,7 @@ import { UserService } from '../../../app/services/user.service';
 import { AuthService } from '../../../app/services/auth.service';
 import { Router } from '@angular/router';
 import { User } from '../../../app/models/user';
+import { AddUsuarioComponent } from '../add-usuario/add-usuario.component';
 
 @Component({
   selector: 'app-tabla-usuarios',
@@ -54,6 +55,21 @@ export class TablaUsuariosComponent implements OnInit {
 
   applyFilter(filterValue: string) {
     this.dataSource.filter = filterValue.trim().toLowerCase();
+  }
+
+  openDialogoAddUser() {
+    const dialogoAddRec = this.dialog.open(AddUsuarioComponent, {
+      width: '80%',
+      height: '80%'
+    });
+
+    dialogoAddRec.afterClosed().subscribe(result => {
+      this.listUser();
+      this.snackBar.open(`Usuario añadido`, 'X', {
+        duration: 3000
+      });
+    });
+
   }
 
 }

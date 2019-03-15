@@ -1,0 +1,50 @@
+<h1>Añadir usuario</h1>
+<div fxFlexFill fxLayoutAlign="center center" fxLayout="row">
+    <form fxLayout="column" fxFlexFill [formGroup]="form">
+        <mat-form-field class="example-full-width">
+            <input matInput placeholder="Nombre..." [formControl]="form.controls['name']">
+        </mat-form-field>
+        <div *ngIf="form.controls['name'].invalid && (form.controls['name'].dirty || form.controls['name'].touched)" class="alert alert-danger">
+            <div *ngIf="form.controls['name'].errors.required">
+                El nombre es necesario
+            </div>
+        </div>
+
+        <mat-form-field>
+            <input matInput placeholder="Email" [formControl]="form.controls['email']">
+        </mat-form-field>
+        <div *ngIf="form.controls['email'].invalid && (form.controls['email'].dirty || form.controls['email'].touched)" class="alert alert-danger">
+            <div *ngIf="form.controls['email'].errors.required">
+                El email es necesario
+            </div>
+        </div>
+
+        <mat-form-field>
+            <input matInput placeholder="Contraseña" [formControl]="form.controls['password']">
+        </mat-form-field>
+        <div *ngIf="form.controls['password'].invalid && (form.controls['password'].dirty || form.controls['password'].touched)" class="alert alert-danger">
+            <div *ngIf="form.controls['password'].errors.required">
+                Contraseña necesaria
+            </div>
+        </div>
+
+        <mat-form-field>
+            <input matInput placeholder="Role (aupair o family)" [formControl]="form.controls['rol']">
+        </mat-form-field>
+        <div *ngIf="form.controls['rol'].invalid && (form.controls['rol'].dirty || form.controls['rol'].touched)" class="alert alert-danger">
+            <div *ngIf="form.controls['rol'].errors.required">
+                Contraseña necesaria
+            </div>
+        </div>
+        <div *ngIf="form.controls['rol'].value != 'aupair' || (form.controls['rol'].value != 'family')" class="alert alert-danger">
+            <div *ngIf="form.controls['rol'].errors.required">
+                La contraseña debe ser aupair o admin
+            </div>
+        </div>
+
+        <div fxLayoutAlign="end end">
+            <button mat-button type="button" class="btn btn-rounded btn-primary" fxFlex="20%" [disabled]="!form.valid" (click)="addUser()">Añadir</button>
+        </div>
+
+    </form>
+</div>

@@ -11,15 +11,16 @@ import { MatCardModule } from '@angular/material/card';
 import { FlexLayoutModule } from '@angular/flex-layout';
 import { MatIconModule } from '@angular/material/icon';
 import { MatListModule } from '@angular/material/list';
-import { MatRadioModule, MatButtonModule, MatChipsModule, MatSnackBarModule, MatDialogModule, MatToolbarModule } from '@angular/material';
+import { MatRadioModule, MatButtonModule, MatChipsModule, MatSnackBarModule, MatDialogModule, MatToolbarModule, MatFormField, MatFormFieldModule, MatInputModule } from '@angular/material';
 import {MatPaginatorModule} from '@angular/material/paginator';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { NgxPaginationModule } from 'ngx-pagination';
 import { routes } from './component-routing.module';
 import { TablaAnunciosComponent } from './tabla-anuncios/tabla-anuncios.component';
+import { AddUsuarioComponent } from './add-usuario/add-usuario.component';
 
 @NgModule({
-  declarations: [TablaUsuariosComponent, TablaAnunciosComponent],
+  declarations: [TablaUsuariosComponent, TablaAnunciosComponent, AddUsuarioComponent],
   imports: [
     CommonModule,
     ComponentRoutingModule,
@@ -41,7 +42,17 @@ import { TablaAnunciosComponent } from './tabla-anuncios/tabla-anuncios.componen
     MatSnackBarModule,
     MatDialogModule,
     MatToolbarModule,
-    MatChipsModule
-  ]
+    MatChipsModule,
+    MatButtonModule,
+    MatCardModule,
+    RouterModule,
+    FormsModule,
+    MatSnackBarModule,
+    FlexLayoutModule,
+    MatFormFieldModule,
+    MatInputModule,
+    MatButtonModule
+  ],
+  entryComponents: [AddUsuarioComponent]
 })
 export class ComponentModule { }

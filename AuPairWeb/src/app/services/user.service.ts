@@ -5,6 +5,7 @@ import { Observable } from 'rxjs';
 import { ListApiResponse } from '../interfaces/listapi-response.interface';
 import { environment } from '../../environments/environment';
 import { User } from '../models/user';
+import { UserDto } from '../dto/user.dto';
 
 @Injectable({
   providedIn: 'root'
@@ -36,6 +37,18 @@ export class UserService {
     };
 
     return this.http.delete<User>(`${environment.ApiUrl}/users/${usuario.id}`, requestOptions);
+  }
+
+  addUser(user: UserDto): Observable<User>{
+    const requestOptions = {
+      headers: new HttpHeaders({
+        'Content-Type': 'application/json',
+        'Authorization': `Bearer ${localStorage.getItem('token')}`,
+        'Access-Control-Allow-Origin': '*'
+      })
+    };
+
+    return this.http.post<User>(`${environment.ApiUrl}/users`, requestOptions);
   }
   
 }
