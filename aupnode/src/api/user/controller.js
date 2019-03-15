@@ -2,6 +2,7 @@ import { success, notFound } from '../../services/response/'
 import { User } from '.'
 import { sign } from '../../services/jwt'
 import { Anuncio } from '../anuncio'
+import { Comentario } from '../comentario'
 
 export const index = ({ querymen: { query, select, cursor } }, res, next) =>
     User.count(query)
@@ -87,12 +88,15 @@ export const updatePassword = ({ bodymen: { body }, params, user }, res, next) =
     .catch(next)
 
 var anunciosUser;
+var idUserBorrado;
+var comentariosUser;
 export const destroy = async({ params }, res, next) => {
 
     await User.findById(params.id)
         .then(notFound(res))
         .then((user) => {
             anunciosUser = user.anuncios;
+            idUserBorrado = user.view(true).id;
             user ? user.remove() : null;
         })
         .then(success(res, 204))
@@ -105,4 +109,14 @@ export const destroy = async({ params }, res, next) => {
             .then(success(res, 204))
             .catch(next)
     }
+
+    // await Comentario.findOne({ userId: idUserBorrado } )
+    //     .then(notFound(res))
+    //     .then((comentarios) => {
+    //         for (var i = 0; i < comentarios.length; i++) {
+    //             comentarios[i] ? comentarios[i].remove() : null;
+    //         }
+    //     })
+    //     .then(success(res, 204))
+    //     .catch(next)
 }
