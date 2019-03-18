@@ -1,7 +1,9 @@
 package com.example.aupairapp.Adapters;
 
 import android.content.Context;
+import android.content.Intent;
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -9,22 +11,34 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.bumptech.glide.Glide;
+import com.example.aupairapp.DashboardActivity;
+import com.example.aupairapp.Generator.UtilToken;
+import com.example.aupairapp.Generator.UtilUser;
 import com.example.aupairapp.Listener.AnuncioListener;
+import com.example.aupairapp.MainActivity;
 import com.example.aupairapp.Model.Anuncio;
 import com.example.aupairapp.R;
+import com.example.aupairapp.SessionActivity;
+import com.example.aupairapp.ViewModel.AnuncioViewModel;
 
 import java.util.List;
 
 public class MyAnuncioRecyclerViewAdapter extends RecyclerView.Adapter<MyAnuncioRecyclerViewAdapter.ViewHolder> {
 
-    private final List<Anuncio> mValues;
+    private List<Anuncio> mValues;
     private final AnuncioListener mListener;
     private Context contexto;
+    private AnuncioViewModel mViewModel;
 
     public MyAnuncioRecyclerViewAdapter(Context ctx, List<Anuncio> items, AnuncioListener listener) {
         contexto = ctx;
         mValues = items;
         mListener = listener;
+    }
+
+    public void setNuevosAnuncios(List<Anuncio> nuevosAnuncios) {
+        this.mValues = nuevosAnuncios;
+        notifyDataSetChanged();
     }
 
     @Override
@@ -41,12 +55,30 @@ public class MyAnuncioRecyclerViewAdapter extends RecyclerView.Adapter<MyAnuncio
         holder.tvEmail.setText(mValues.get(position).getOwnerId().getEmail());
         holder.tvContenido.setText(mValues.get(position).getContenido());
         holder.tvCreatedAt.setText(mValues.get(position).getCreatedAt().toString());
+        holder.ivDeleteAnuncio.setVisibility(View.GONE);
 
         Glide
                 .with(this.contexto)
                 .load(mValues.get(position).getOwnerId().getPicture())
                 .into(holder.imgOwner);
 
+        holder.imgOwner.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if(UtilToken.getToken(v.getContext()) == null){
+                    v.getContext().startActivity(new Intent(v.getContext().getApplicationContext(), SessionActivity.class));
+                } else {
+                    Log.d("t", UtilToken.getToken(v.getContext()).toString());
+/*
+                    v.getContext().startActivity(new Intent(v.getContext().getApplicationContext(), SessionActivity.class));
+*/
+                }
+            }
+        });
+
+        if(UtilUser.getId(holder.mView.getContext()) == mValues.get(position).getOwnerId().getId()){
+            /*holder.ivDeleteAnuncio.setVisibility(View.VISIBLE);*/
+        }
 
         /*holder.mView.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -69,7 +101,7 @@ public class MyAnuncioRecyclerViewAdapter extends RecyclerView.Adapter<MyAnuncio
         public final View mView;
         public final TextView tvName, tvEmail, tvContenido, tvCreatedAt;
         public final TextView mContentView;
-        public final ImageView imgOwner;
+        public final ImageView imgOwner, ivDeleteAnuncio;
         public Anuncio mItem;
 
         public ViewHolder(View view) {
@@ -81,6 +113,7 @@ public class MyAnuncioRecyclerViewAdapter extends RecyclerView.Adapter<MyAnuncio
             tvCreatedAt = view.findViewById(R.id.tvCreatedAt);
             mContentView = (TextView) view.findViewById(R.id.content);
             imgOwner = view.findViewById(R.id.imgOwner);
+            ivDeleteAnuncio = view.findViewById(R.id.ivDeleteAnuncio);
         }
 
         @Override

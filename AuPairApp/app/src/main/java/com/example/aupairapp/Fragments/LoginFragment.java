@@ -13,6 +13,7 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
 
+import com.example.aupairapp.DashboardActivity;
 import com.example.aupairapp.Generator.ServiceGenerator;
 import com.example.aupairapp.Generator.UtilToken;
 import com.example.aupairapp.Generator.UtilUser;
@@ -165,7 +166,7 @@ public class LoginFragment extends Fragment {
                         UtilToken.setToken(getActivity(), response.body().getToken());
                         UtilUser.setUserInfo(getActivity(), response.body().getUser());
 
-                        startActivity(new Intent(getActivity(), MainActivity.class));
+                        startActivity(new Intent(getActivity(), DashboardActivity.class));
                     }
                 }
 

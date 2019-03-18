@@ -1,6 +1,7 @@
 import { success, notFound, authorOrAdmin } from '../../services/response/'
 import { Anuncio } from '.'
 import { User } from '../user'
+import { Comentario } from '../comentario'
 
 // export const create = ({ user, bodymen: { body } }, res, next) =>
 //     Anuncio.create({...body, ownerId: user })
@@ -53,6 +54,18 @@ export const index = ({ params, querymen: { query, select, cursor } }, res, next
         .catch(next)
 }
 
+export const indexMyAnuncios = ({ user, querymen: { query, select, cursor } }, res, next) => {
+    Anuncio.find({ ownerId: user.id })
+        .populate('ownerId', 'name picture role email')
+        .then(notFound(res))
+        .then((anuncios) => ({
+            count: anuncios.length,
+            rows: anuncios
+        }))
+        .then(success(res, 200))
+        .catch(next)
+}
+
 export const show = ({ params }, res, next) =>
     Anuncio.findById(params.id)
     .then(notFound(res))
@@ -69,13 +82,14 @@ export const update = ({ bodymen: { body }, params }, res, next) =>
     .catch(next)
 
 var idUser;
-
+var comentarios;
 export const destroy = async({ user, params }, res, next) => {
     await Anuncio.findById(params.id)
         .then(notFound(res))
         .then(authorOrAdmin(res, user, 'ownerId'))
         .then((anuncio) => {
             idUser = anuncio.view(true).ownerId;
+            comentarios = anuncio.comentarios;
             anuncio ? anuncio.remove() : null;
         })
         .then(success(res, 204))
@@ -84,6 +98,17 @@ export const destroy = async({ user, params }, res, next) => {
     await User.findByIdAndUpdate(idUser, { $pull: { anuncios: params.id } }, { new: true })
         .then(success(res, 200))
         .catch(next)
+
+    /**
+     * ESTO NO LO HACE
+     */
+    for (var i = 0; i < comentarios.lenth; i++) {
+        await Comentario.findById(comentarios[i])
+            .then(notFound(res))
+            .then((comentario) => comentario ? comentario.remove() : null)
+            .then(success(res, 204))
+            .catch(next)
+    }
 }
 
 

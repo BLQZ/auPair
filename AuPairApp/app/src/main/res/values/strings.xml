@@ -14,4 +14,18 @@
     <string name="sharedpreferences_filename">login</string>
     <string name="jwt_key">JWT_KEY</string>
     <string name="nextRegistro">Next</string>
+    <string name="title_activity_dashboard">DashboardActivity</string>
+    <string name="title_home">Home</string>
+    <string name="title_dashboard">Dashboard</string>
+    <string name="title_notifications">Notifications</string>
+    <string name="dialog_message">¿Estás seguro?</string>
+    <string name="dialog_title">¿Quieres cerrar sesión?</string>
+    <string name="ok">Salir</string>
+    <string name="cancel">Cancelar</string>
+    <string name="addAnuncio">Añadir anuncio</string>
+    <string name="anuncios">Anuncios</string>
+    <string name="misAnuncios">Mis Anuncios</string>
+    <string name="favoritos">Favoritos</string>
+    <string name="chat">Chat</string>
+    <string name="ajustes">Ajustes</string>
 </resources>

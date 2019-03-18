@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <item
+        android:id="@+id/navigation_anuncios"
+        android:icon="@drawable/ic_anuncios_black_24dp"
+        android:title="@string/anuncios" />
+
+    <item
+        android:id="@+id/navigation_favoritos"
+        android:icon="@drawable/ic_favorite_black_24dp"
+        android:title="@string/favoritos" />
+
+    <item
+        android:id="@+id/navigation_mis_anuncios"
+        android:icon="@drawable/ic_local_offer_black_24dp"
+        android:title="@string/misAnuncios" />
+
+    <item
+        android:id="@+id/navigation_ajustes"
+        android:icon="@drawable/ic_settings_black_24dp"
+        android:title="@string/ajustes" />
+
+    <item
+        android:id="@+id/navigation_chat"
+        android:icon="@drawable/ic_chat_black_24dp"
+        android:title="@string/chat" />
+
+</menu>

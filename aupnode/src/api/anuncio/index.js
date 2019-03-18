@@ -2,7 +2,7 @@ import { Router } from 'express'
 import { middleware as query, Schema } from 'querymen'
 import { middleware as body } from 'bodymen'
 import { master, token } from '../../services/passport'
-import { create, index, show, update, destroy } from './controller'
+import { create, index, show, update, destroy, indexMyAnuncios } from './controller'
 import { schema } from './model'
 export Anuncio, { schema }
 from './model'
@@ -52,6 +52,20 @@ router.get('/',
     master(),
     query(anunciosSchema),
     index)
+
+/**
+ * @api {get} /anuncios Retrieve mine anuncios
+ * @apiName RetrieveMineAnuncios
+ * @apiGroup Anuncio
+ * @apiUse listParams
+ * @apiSuccess {Number} count Total amount of anuncios.
+ * @apiSuccess {Object[]} rows List of anuncios.
+ * @apiError {Object} 400 Some parameters may contain invalid values.
+ */
+router.get('/mine',
+    token({ required: true }),
+    query(anunciosSchema),
+    indexMyAnuncios)
 
 /**
  * @api {get} /anuncios/:id Retrieve anuncio
