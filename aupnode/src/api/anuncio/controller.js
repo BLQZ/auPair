@@ -25,23 +25,6 @@ export const create = async({ user, bodymen: { body } }, res, next) => {
         .catch(next)
 }
 
-
-// export const addFavorite = ({ user, params }, res, next) =>
-//     User.findByIdAndUpdate(user.id, { $addToSet: { anuncios: params.id } }, { new: true })
-//     .then(success(res, 200))
-//     .catch(next)
-
-// export const index = ({ querymen: { query, select, cursor } }, res, next) =>
-//     Anuncio.count(query)
-//     .then(count => Anuncio.find(query, select, cursor)
-//         .then((anuncios) => ({
-//             count,
-//             rows: anuncios.map((anuncio) => anuncio.view(true))
-//         }))
-//     )
-//     .then(success(res))
-//     .catch(next)
-
 export const index = ({ params, querymen: { query, select, cursor } }, res, next) => {
     Anuncio
         .find(query, select, cursor)
@@ -111,9 +94,26 @@ export const destroy = async({ user, params }, res, next) => {
     }
 }
 
+export const addFavorite = ({ user, params }, res, next) =>
+    User.findByIdAndUpdate(user.id, { $addToSet: { favs: params.id } }, { new: true })
+    .then(success(res, 200))
+    .catch(next)
 
-// Anuncio.findById(params.id)
-//     .then(notFound(res))
-//     .then((anuncio) => anuncio ? anuncio.remove() : null)
-//     .then(success(res, 204))
-//     .catch(next)
+export const delFavorite = ({ user, params }, res, next) =>
+    User.findByIdAndUpdate(user.id, { $pull: { favs: params.id } }, { new: true })
+    .then(success(res, 200))
+    .catch(next)
+
+
+export const userFavorites = ({ user, querymen: { query, select, cursor } }, res, next) => {
+    query['_id'] = { $in: user.favs }
+    Anuncio
+        .find(query, select, cursor)
+        .populate('ownerId', 'name picture email role')
+        .then((result) => ({
+            count: result.length,
+            rows: result
+        }))
+        .then(success(res))
+        .catch(next)
+}

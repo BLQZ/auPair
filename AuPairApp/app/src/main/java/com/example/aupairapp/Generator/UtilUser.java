@@ -5,6 +5,9 @@ import android.content.SharedPreferences;
 
 import com.example.aupairapp.Model.User;
 
+import java.util.ArrayList;
+import java.util.List;
+
 public class UtilUser {
 
     static SharedPreferences sharedPreferences;
@@ -94,21 +97,6 @@ public class UtilUser {
         setSharedPreferences(mContext);
         SharedPreferences.Editor editor = sharedPreferences.edit();
         editor.putString("Id", id);
-        editor.commit();
-    }
-
-    public static boolean getEncuesta(Context mContext) {
-        setSharedPreferences(mContext);
-        Boolean encuesta = sharedPreferences
-                .getBoolean("Encuesta", false);
-
-        return encuesta;
-    }
-
-    public static void setEncuesta(Context mContext, Boolean encuesta) {
-        setSharedPreferences(mContext);
-        SharedPreferences.Editor editor = sharedPreferences.edit();
-        editor.putBoolean("Encuesta", encuesta);
         editor.commit();
     }
 

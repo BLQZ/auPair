@@ -6,8 +6,10 @@ import com.example.aupairapp.Model.ResponseContainer;
 
 import retrofit2.Call;
 import retrofit2.http.Body;
+import retrofit2.http.DELETE;
 import retrofit2.http.GET;
 import retrofit2.http.POST;
+import retrofit2.http.Path;
 
 public interface AnuncioService {
 
@@ -19,4 +21,7 @@ public interface AnuncioService {
 
     @GET("anuncios/mine")
     Call<ResponseContainer<Anuncio>> getMineAnuncios();
+
+    @DELETE("anuncios/{id}")
+    Call<ResponseContainer<Anuncio>> removeAnuncio(@Path("id") String id);
 }

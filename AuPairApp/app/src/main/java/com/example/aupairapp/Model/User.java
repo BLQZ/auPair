@@ -45,7 +45,7 @@ public class User {
     }
 
     public String getId() {
-        return id;
+        return this.id;
     }
 
     public String getName() {

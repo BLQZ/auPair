@@ -73,6 +73,10 @@ const userSchema = new Schema({
     anuncios: [{
         type: Schema.ObjectId,
         ref: 'Anuncio'
+    }],
+    favs: [{
+        type: Schema.ObjectId,
+        ref: 'Anuncio'
     }]
 }, {
     timestamps: true
@@ -109,7 +113,7 @@ userSchema.methods = {
         let fields = ['id', 'name', 'picture', 'role']
 
         if (full) {
-            fields = [...fields, 'email', 'address', 'city', 'province', 'country', 'male', 'nHijos', 'date', 'anuncios', 'createdAt']
+            fields = [...fields, 'email', 'address', 'city', 'province', 'country', 'male', 'nHijos', 'date', 'anuncios', 'favs', 'createdAt']
         }
 
         fields.forEach((field) => { view[field] = this[field] })

@@ -18,6 +18,7 @@ import com.example.aupairapp.Listener.AnuncioListener;
 import com.example.aupairapp.MainActivity;
 import com.example.aupairapp.Model.Anuncio;
 import com.example.aupairapp.R;
+import com.example.aupairapp.Services.AnuncioService;
 import com.example.aupairapp.SessionActivity;
 import com.example.aupairapp.ViewModel.AnuncioViewModel;
 
@@ -69,16 +70,32 @@ public class MyAnuncioRecyclerViewAdapter extends RecyclerView.Adapter<MyAnuncio
                     v.getContext().startActivity(new Intent(v.getContext().getApplicationContext(), SessionActivity.class));
                 } else {
                     Log.d("t", UtilToken.getToken(v.getContext()).toString());
-/*
-                    v.getContext().startActivity(new Intent(v.getContext().getApplicationContext(), SessionActivity.class));
-*/
                 }
             }
         });
 
-        if(UtilUser.getId(holder.mView.getContext()) == mValues.get(position).getOwnerId().getId()){
-            /*holder.ivDeleteAnuncio.setVisibility(View.VISIBLE);*/
+        if(UtilToken.getToken(this.contexto) == null){
+            holder.ivDeleteAnuncio.setVisibility(View.INVISIBLE);
+        } else {
+            String id = UtilUser.getId(this.contexto);
+            String idOwner=  this.mValues.get(position).getOwnerId().getId();
+            Log.d("d", this.mValues.get(position).toString());
+            if(id.equals(idOwner)){
+                holder.ivDeleteAnuncio.setVisibility(View.VISIBLE);
+            } else {
+                holder.ivDeleteAnuncio.setVisibility(View.INVISIBLE);
+            }
+
         }
+
+        holder.ivDeleteAnuncio.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                /*AnuncioService*/
+            }
+        });
+
+
 
         /*holder.mView.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -103,6 +120,7 @@ public class MyAnuncioRecyclerViewAdapter extends RecyclerView.Adapter<MyAnuncio
         public final TextView mContentView;
         public final ImageView imgOwner, ivDeleteAnuncio;
         public Anuncio mItem;
+        public Context contextaso;
 
         public ViewHolder(View view) {
             super(view);
@@ -114,6 +132,7 @@ public class MyAnuncioRecyclerViewAdapter extends RecyclerView.Adapter<MyAnuncio
             mContentView = (TextView) view.findViewById(R.id.content);
             imgOwner = view.findViewById(R.id.imgOwner);
             ivDeleteAnuncio = view.findViewById(R.id.ivDeleteAnuncio);
+            contextaso = view.getContext();
         }
 
         @Override

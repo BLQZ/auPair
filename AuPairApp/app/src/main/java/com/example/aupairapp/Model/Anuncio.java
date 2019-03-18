@@ -4,7 +4,7 @@ import java.util.Date;
 
 public class Anuncio {
 
-    private String id;
+    private String _id;
     private String contenido;
     private User ownerId;
     private Date createdAt;
@@ -13,18 +13,18 @@ public class Anuncio {
     }
 
     public Anuncio(String id, String contenido, User ownerId, Date createdAt) {
-        this.id = id;
+        this._id = id;
         this.contenido = contenido;
         this.ownerId = ownerId;
         this.createdAt = createdAt;
     }
 
     public String getId() {
-        return id;
+        return _id;
     }
 
     public void setId(String id) {
-        this.id = id;
+        this._id = id;
     }
 
     public String getContenido() {
@@ -58,7 +58,7 @@ public class Anuncio {
 
         Anuncio anuncio = (Anuncio) o;
 
-        if (id != null ? !id.equals(anuncio.id) : anuncio.id != null) return false;
+        if (_id != null ? !_id.equals(anuncio._id) : anuncio._id != null) return false;
         if (contenido != null ? !contenido.equals(anuncio.contenido) : anuncio.contenido != null)
             return false;
         if (ownerId != null ? !ownerId.equals(anuncio.ownerId) : anuncio.ownerId != null)
@@ -68,7 +68,7 @@ public class Anuncio {
 
     @Override
     public int hashCode() {
-        int result = id != null ? id.hashCode() : 0;
+        int result = _id != null ? _id.hashCode() : 0;
         result = 31 * result + (contenido != null ? contenido.hashCode() : 0);
         result = 31 * result + (ownerId != null ? ownerId.hashCode() : 0);
         result = 31 * result + (createdAt != null ? createdAt.hashCode() : 0);
@@ -78,7 +78,7 @@ public class Anuncio {
     @Override
     public String toString() {
         return "Anuncio{" +
-                "id='" + id + '\'' +
+                "id='" + _id + '\'' +
                 ", contenido='" + contenido + '\'' +
                 ", ownerId=" + ownerId +
                 ", createdAt=" + createdAt +
