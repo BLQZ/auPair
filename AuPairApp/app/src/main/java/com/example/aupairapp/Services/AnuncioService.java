@@ -33,4 +33,7 @@ public interface AnuncioService {
 
     @GET("anuncios/favs")
     Call<ResponseContainer<Anuncio>> getFavAnuncios();
+
+    @GET("anuncios/auth")
+    Call<ResponseContainer<Anuncio>> getAnunciosAuth();
 }

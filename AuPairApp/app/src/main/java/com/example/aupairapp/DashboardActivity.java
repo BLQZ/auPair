@@ -50,6 +50,7 @@ public class DashboardActivity extends AppCompatActivity implements AnuncioListe
     private static final int ANUNCIO_LIST_ALL = 1;
     private static final int ANUNCIO_LIST_MINE = 2;
     private static final int ANUNCIO_LIST_FAVS = 3;
+    private static final int ANUNCIO_LIST_ALL_AUTH = 4;
 
     private BottomNavigationView.OnNavigationItemSelectedListener mOnNavigationItemSelectedListener
             = new BottomNavigationView.OnNavigationItemSelectedListener() {
@@ -60,7 +61,7 @@ public class DashboardActivity extends AppCompatActivity implements AnuncioListe
                 case R.id.navigation_anuncios:
                     getSupportFragmentManager()
                             .beginTransaction()
-                            .replace(R.id.contenedor, AnuncioFragment.newInstance(ANUNCIO_LIST_ALL))
+                            .replace(R.id.contenedor, AnuncioFragment.newInstance(ANUNCIO_LIST_ALL_AUTH))
                             .commit();
                     btnToAddAnuncio.show();
                     return true;
@@ -96,7 +97,7 @@ public class DashboardActivity extends AppCompatActivity implements AnuncioListe
 
         getSupportFragmentManager()
                 .beginTransaction()
-                .add(R.id.contenedor, new AnuncioFragment())
+                .add(R.id.contenedor, AnuncioFragment.newInstance(ANUNCIO_LIST_ALL_AUTH))
                 .commit();
         BottomNavigationView navigation = (BottomNavigationView) findViewById(R.id.navigation);
         navigation.setOnNavigationItemSelectedListener(mOnNavigationItemSelectedListener);

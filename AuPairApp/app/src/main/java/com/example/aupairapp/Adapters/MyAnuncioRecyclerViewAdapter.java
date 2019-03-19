@@ -67,6 +67,7 @@ public class MyAnuncioRecyclerViewAdapter extends RecyclerView.Adapter<MyAnuncio
         holder.tvContenido.setText(mValues.get(position).getContenido());
         holder.tvCreatedAt.setText(mValues.get(position).getCreatedAt().toString());
         holder.ivDeleteAnuncio.setVisibility(View.GONE);
+        holder.fav.setImageResource(R.drawable.ic_favorite_border_24dp);
 
         Glide
                 .with(this.contexto)
@@ -84,14 +85,60 @@ public class MyAnuncioRecyclerViewAdapter extends RecyclerView.Adapter<MyAnuncio
             }
         });
 
+        holder.fav.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if(UtilToken.getToken(v.getContext()) == null){
+                    v.getContext().startActivity(new Intent(v.getContext().getApplicationContext(), SessionActivity.class));
+                } else {
+                    if(mValues.get(position).isFav()){
+                        AnuncioService service = ServiceGenerator.createService(AnuncioService.class, UtilToken.getToken(contexto), TipoAutenticacion.JWT);
+                        Call<ResponseContainer<Anuncio>> call = service.removeFavAnuncio(mValues.get(position).getId());
+
+                        call.enqueue(new Callback<ResponseContainer<Anuncio>>() {
+                            @Override
+                            public void onResponse(Call<ResponseContainer<Anuncio>> call, Response<ResponseContainer<Anuncio>> response) {
+                                if(response.isSuccessful()){
+                                    holder.fav.setImageResource(R.drawable.ic_favorite_border_24dp);
+                                    Toast.makeText(contexto, "Eliminado Favoritos", Toast.LENGTH_SHORT).show();
+                                }
+                            }
+
+                            @Override
+                            public void onFailure(Call<ResponseContainer<Anuncio>> call, Throwable t) {
+                                Toast.makeText(contexto, "Error", Toast.LENGTH_SHORT).show();
+                            }
+                        });
+                    } else {
+                        AnuncioService service = ServiceGenerator.createService(AnuncioService.class, UtilToken.getToken(contexto), TipoAutenticacion.JWT);
+                        Call<ResponseContainer<Anuncio>> call = service.addFavAnuncio(mValues.get(position).getId());
+
+                        call.enqueue(new Callback<ResponseContainer<Anuncio>>() {
+                            @Override
+                            public void onResponse(Call<ResponseContainer<Anuncio>> call, Response<ResponseContainer<Anuncio>> response) {
+                                if(response.isSuccessful()){
+                                    holder.fav.setImageResource(R.drawable.ic_favorite_24dp);
+                                    Toast.makeText(contexto, "Añadido a Favoritos", Toast.LENGTH_SHORT).show();
+                                }
+                            }
+
+                            @Override
+                            public void onFailure(Call<ResponseContainer<Anuncio>> call, Throwable t) {
+                                Toast.makeText(contexto, "Error", Toast.LENGTH_SHORT).show();
+                            }
+                        });
+                    }
+                }
+            }
+        });
+
         if(UtilToken.getToken(this.contexto) == null){
             holder.ivDeleteAnuncio.setVisibility(View.INVISIBLE);
         } else {
-            /*Set<String> favs = new HashSet<>();
-            Log.d("d", String.valueOf(UtilUser.getFavs(this.contexto).size()));*/
-            /*if(UtilUser.getFavs(this.contexto).contains(this.mValues.get(position).getId())){
-                Log.d("d", "es favorito");
-            }*/
+            if(this.mValues.get(position).isFav()){
+                Log.d("fav", "true");
+                holder.fav.setImageResource(R.drawable.ic_favorite_24dp);
+            }
             String id = UtilUser.getEmail(this.contexto);
             String idOwner=  this.mValues.get(position).getOwnerId().getEmail();
             Log.d("d", this.mValues.get(position).toString());
@@ -149,7 +196,7 @@ public class MyAnuncioRecyclerViewAdapter extends RecyclerView.Adapter<MyAnuncio
         public final View mView;
         public final TextView tvName, tvEmail, tvContenido, tvCreatedAt;
         public final TextView mContentView;
-        public final ImageView imgOwner, ivDeleteAnuncio;
+        public final ImageView imgOwner, ivDeleteAnuncio, fav;
         public Anuncio mItem;
         public Context contextaso;
 
@@ -164,11 +211,14 @@ public class MyAnuncioRecyclerViewAdapter extends RecyclerView.Adapter<MyAnuncio
             imgOwner = view.findViewById(R.id.imgOwner);
             ivDeleteAnuncio = view.findViewById(R.id.ivDeleteAnuncio);
             contextaso = view.getContext();
+            fav = view.findViewById(R.id.fav);
         }
 
         @Override
         public String toString() {
             return super.toString() + " '" + mContentView.getText() + "'";
         }
+
+
     }
 }

@@ -8,6 +8,7 @@ public class Anuncio {
     private String contenido;
     private User ownerId;
     private Date createdAt;
+    private boolean isFav;
 
     public Anuncio() {
     }
@@ -17,6 +18,14 @@ public class Anuncio {
         this.contenido = contenido;
         this.ownerId = ownerId;
         this.createdAt = createdAt;
+    }
+
+    public Anuncio(String id, String contenido, User ownerId, Date createdAt, boolean isFav) {
+        this.id = id;
+        this.contenido = contenido;
+        this.ownerId = ownerId;
+        this.createdAt = createdAt;
+        this.isFav = isFav;
     }
 
     public String getId() {
@@ -49,6 +58,14 @@ public class Anuncio {
 
     public void setCreatedAt(Date createdAt) {
         this.createdAt = createdAt;
+    }
+
+    public boolean isFav() {
+        return isFav;
+    }
+
+    public void setFav(boolean fav) {
+        isFav = fav;
     }
 
     @Override

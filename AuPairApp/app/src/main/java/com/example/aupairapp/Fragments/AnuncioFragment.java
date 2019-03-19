@@ -50,6 +50,7 @@ public class AnuncioFragment extends Fragment {
     private static final int ANUNCIO_LIST_ALL = 1;
     private static final int ANUNCIO_LIST_MINE = 2;
     private static final int ANUNCIO_LIST_FAVS = 3;
+    private static final int ANUNCIO_LIST_ALL_AUTH = 4;
     // TODO: Customize parameters
     private int anuncioListType = 1;
     private AnuncioListener mListener;
@@ -97,6 +98,38 @@ public class AnuncioFragment extends Fragment {
 
                 AnuncioService service = ServiceGenerator.createService(AnuncioService.class);
                 Call<ResponseContainer<Anuncio>> call = service.getAnuncios();
+
+                call.enqueue(new Callback<ResponseContainer<Anuncio>>() {
+                    @Override
+                    public void onResponse(Call<ResponseContainer<Anuncio>> call, Response<ResponseContainer<Anuncio>> response) {
+                        if(response.isSuccessful()){
+                            anuncioList = response.body().getRows();
+
+                            adapter = new MyAnuncioRecyclerViewAdapter(
+                                    ctx,
+                                    anuncioList,
+                                    mListener
+                            );
+                            recyclerView.setAdapter(adapter);
+                        }
+                    }
+
+                    @Override
+                    public void onFailure(Call<ResponseContainer<Anuncio>> call, Throwable t) {
+                        Log.e("NetworkFailure", t.getMessage());
+                        Toast.makeText(getActivity(), "Error de conexión", Toast.LENGTH_SHORT).show();
+                    }
+                });
+
+
+                lanzarViewModel(ctx);
+
+            }
+
+            if(anuncioListType == ANUNCIO_LIST_ALL_AUTH){
+
+                AnuncioService service = ServiceGenerator.createService(AnuncioService.class, UtilToken.getToken(ctx), TipoAutenticacion.JWT);
+                Call<ResponseContainer<Anuncio>> call = service.getAnunciosAuth();
 
                 call.enqueue(new Callback<ResponseContainer<Anuncio>>() {
                     @Override
@@ -258,6 +291,38 @@ public class AnuncioFragment extends Fragment {
                     Toast.makeText(getActivity(), "Error de conexión", Toast.LENGTH_SHORT).show();
                 }
             });
+        }
+
+        if(anuncioListType == ANUNCIO_LIST_ALL_AUTH){
+
+            AnuncioService service = ServiceGenerator.createService(AnuncioService.class, UtilToken.getToken(ctx), TipoAutenticacion.JWT);
+            Call<ResponseContainer<Anuncio>> call = service.getAnunciosAuth();
+
+            call.enqueue(new Callback<ResponseContainer<Anuncio>>() {
+                @Override
+                public void onResponse(Call<ResponseContainer<Anuncio>> call, Response<ResponseContainer<Anuncio>> response) {
+                    if(response.isSuccessful()){
+                        anuncioList = response.body().getRows();
+
+                        adapter = new MyAnuncioRecyclerViewAdapter(
+                                ctx,
+                                anuncioList,
+                                mListener
+                        );
+                        recyclerView.setAdapter(adapter);
+                    }
+                }
+
+                @Override
+                public void onFailure(Call<ResponseContainer<Anuncio>> call, Throwable t) {
+                    Log.e("NetworkFailure", t.getMessage());
+                    Toast.makeText(getActivity(), "Error de conexión", Toast.LENGTH_SHORT).show();
+                }
+            });
+
+
+            lanzarViewModel(ctx);
+
         }
 
         if(anuncioListType == ANUNCIO_LIST_MINE){

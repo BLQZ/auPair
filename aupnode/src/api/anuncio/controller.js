@@ -136,6 +136,13 @@ export const userFavorites = ({ user, querymen: { query, select, cursor } }, res
     Anuncio
         .find(query, select, cursor)
         .populate('ownerId', 'name picture email role')
+        .then((result) => result.map((anuncio) => {
+            let favoriteAnuncio = JSON.parse(JSON.stringify(anuncio))
+            console.log(user.favs);
+            console.log('Id ' + anuncio.id)
+            favoriteAnuncio['isFav'] = user.favs.indexOf(anuncio.id) > -1
+            return favoriteAnuncio
+        }))
         .then((result) => ({
             count: result.length,
             rows: result

@@ -25,7 +25,7 @@
 							"urlencoded": [
 								{
 									"key": "email",
-									"value": "family@gmail.com",
+									"value": "aupair@gmail.com",
 									"type": "text"
 								},
 								{
@@ -35,12 +35,12 @@
 								},
 								{
 									"key": "name",
-									"value": "Family",
+									"value": "Au Pair",
 									"type": "text"
 								},
 								{
 									"key": "role",
-									"value": "family",
+									"value": "aupair",
 									"type": "text"
 								},
 								{
@@ -76,7 +76,7 @@
 								},
 								{
 									"key": "nHijos",
-									"value": "99",
+									"value": "0",
 									"type": "text"
 								},
 								{
@@ -183,9 +183,9 @@
 							"raw": ""
 						},
 						"url": {
-							"raw": "{{UrlLocal}}/users/me?access_token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjVjOGFmODU4ZmRkM2ZmMDAyM2E3NGIzOSIsImlhdCI6MTU1MjY1MDEyNH0.edNi6j1Vvb6Ax5Hbv-xucNhj2IUaB1AOHGwiqXPB_QI",
+							"raw": "{{UrlHeroku}}/users/me?access_token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjVjOGJhNGY4Njk4YjNiMDAyMzM5N2UzOSIsImlhdCI6MTU1MjczODI1M30.T7uPnKQY0xi71Jqbsa55CrKJq_aO31LXp-LlfO8sYmk",
 							"host": [
-								"{{UrlLocal}}"
+								"{{UrlHeroku}}"
 							],
 							"path": [
 								"users",
@@ -194,7 +194,7 @@
 							"query": [
 								{
 									"key": "access_token",
-									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjVjOGFmODU4ZmRkM2ZmMDAyM2E3NGIzOSIsImlhdCI6MTU1MjY1MDEyNH0.edNi6j1Vvb6Ax5Hbv-xucNhj2IUaB1AOHGwiqXPB_QI"
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjVjOGJhNGY4Njk4YjNiMDAyMzM5N2UzOSIsImlhdCI6MTU1MjczODI1M30.T7uPnKQY0xi71Jqbsa55CrKJq_aO31LXp-LlfO8sYmk"
 								}
 							]
 						}
@@ -237,7 +237,7 @@
 							"basic": [
 								{
 									"key": "username",
-									"value": "aupair@gmail.com",
+									"value": "admin@gmail.com",
 									"type": "string"
 								},
 								{
@@ -254,9 +254,9 @@
 							"raw": ""
 						},
 						"url": {
-							"raw": "{{UrlHeroku}}/auth/admin?access_token={{MasterKeyAUP}}",
+							"raw": "{{UrlLocal}}/auth/admin?access_token={{MasterKeyAUP}}",
 							"host": [
-								"{{UrlHeroku}}"
+								"{{UrlLocal}}"
 							],
 							"path": [
 								"auth",
@@ -294,7 +294,7 @@
 							"urlencoded": [
 								{
 									"key": "contenido",
-									"value": "Busco au pair distintoLorem gnis lobortis natoque quam euismod volutpat cum, ridiculus eleifend accumsan nisi penatibus vehicula justo.",
+									"value": "Busco family sin NIÑOS  gnis lobortis natoque quam euismod volutpat cum, ridiculus eleifend accumsan nisi penatibus vehicula justo.",
 									"type": "text"
 								},
 								{
@@ -306,7 +306,7 @@
 							]
 						},
 						"url": {
-							"raw": "{{UrlHeroku}}/anuncios?access_token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjVjOGFmODdjZmRkM2ZmMDAyM2E3NGIzYSIsImlhdCI6MTU1MjYxMTU5NH0.OIRqmMP0iHBT65gSJuHghh2yYKSX5JbPOUDbUhlGR0w",
+							"raw": "{{UrlHeroku}}/anuncios?access_token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjVjOGJhNGY4Njk4YjNiMDAyMzM5N2UzOSIsImlhdCI6MTU1MjY3NTI4OX0.IbTN0F0euUEf3juKmFKa0Xj458ZdigGKNNLo75LUazs",
 							"host": [
 								"{{UrlHeroku}}"
 							],
@@ -316,7 +316,7 @@
 							"query": [
 								{
 									"key": "access_token",
-									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjVjOGFmODdjZmRkM2ZmMDAyM2E3NGIzYSIsImlhdCI6MTU1MjYxMTU5NH0.OIRqmMP0iHBT65gSJuHghh2yYKSX5JbPOUDbUhlGR0w"
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjVjOGJhNGY4Njk4YjNiMDAyMzM5N2UzOSIsImlhdCI6MTU1MjY3NTI4OX0.IbTN0F0euUEf3juKmFKa0Xj458ZdigGKNNLo75LUazs"
 								}
 							]
 						}
@@ -343,9 +343,9 @@
 							"raw": ""
 						},
 						"url": {
-							"raw": "{{UrlLocal}}/anuncios?",
+							"raw": "{{UrlHeroku}}/anuncios?",
 							"host": [
-								"{{UrlLocal}}"
+								"{{UrlHeroku}}"
 							],
 							"path": [
 								"anuncios"
@@ -371,18 +371,18 @@
 							"raw": ""
 						},
 						"url": {
-							"raw": "{{UrlHeroku}}/anuncios/5c87f6fef4b1cc3c99970d81?access_token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjVjODJiMjRjOWNiZjFkMWIzMjhjNDAzYSIsImlhdCI6MTU1MjYxMDkxNH0.UpKVE5wPmVxO8L4atmWzoqh0NrtTx1jKpfpi4qhBqns",
+							"raw": "{{UrlLocal}}/anuncios/5c8af929fdd3ff0023a74b3c?access_token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjVjOGFmODNkZmRkM2ZmMDAyM2E3NGIzOCIsImlhdCI6MTU1MjY3NDcwNH0.dM8gHO45WLzExmTNWXpWFmraQE989GE3OwpQ-u6jGtc",
 							"host": [
-								"{{UrlHeroku}}"
+								"{{UrlLocal}}"
 							],
 							"path": [
 								"anuncios",
-								"5c87f6fef4b1cc3c99970d81"
+								"5c8af929fdd3ff0023a74b3c"
 							],
 							"query": [
 								{
 									"key": "access_token",
-									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjVjODJiMjRjOWNiZjFkMWIzMjhjNDAzYSIsImlhdCI6MTU1MjYxMDkxNH0.UpKVE5wPmVxO8L4atmWzoqh0NrtTx1jKpfpi4qhBqns"
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjVjOGFmODNkZmRkM2ZmMDAyM2E3NGIzOCIsImlhdCI6MTU1MjY3NDcwNH0.dM8gHO45WLzExmTNWXpWFmraQE989GE3OwpQ-u6jGtc"
 								}
 							]
 						}
@@ -399,9 +399,9 @@
 							"raw": ""
 						},
 						"url": {
-							"raw": "{{UrlHeroku}}/anuncios/5c8af94ffdd3ff0023a74b3d?access_token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjVjODJiMjRjOWNiZjFkMWIzMjhjNDAzYSIsImlhdCI6MTU1MjYwNzE3NX0.bMMcXFMDRmt4bCwqKkBOQZHTSSdsvKDePJTvoL8vqN0",
+							"raw": "{{UrlLocal}}/anuncios/5c8af94ffdd3ff0023a74b3d?access_token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjVjODJiMjRjOWNiZjFkMWIzMjhjNDAzYSIsImlhdCI6MTU1MjYwNzE3NX0.bMMcXFMDRmt4bCwqKkBOQZHTSSdsvKDePJTvoL8vqN0",
 							"host": [
-								"{{UrlHeroku}}"
+								"{{UrlLocal}}"
 							],
 							"path": [
 								"anuncios",
@@ -411,6 +411,148 @@
 								{
 									"key": "access_token",
 									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjVjODJiMjRjOWNiZjFkMWIzMjhjNDAzYSIsImlhdCI6MTU1MjYwNzE3NX0.bMMcXFMDRmt4bCwqKkBOQZHTSSdsvKDePJTvoL8vqN0"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "List Mine Anuncios",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"url": {
+							"raw": "{{UrlHeroku}}/anuncios/mine?access_token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjVjOGJhNGY4Njk4YjNiMDAyMzM5N2UzOSIsImlhdCI6MTU1Mjg1MDkzM30.tgpY-n_EPjSHd_9VKwrMAlrKfNO1nne5oP1NrGeb7s8",
+							"host": [
+								"{{UrlHeroku}}"
+							],
+							"path": [
+								"anuncios",
+								"mine"
+							],
+							"query": [
+								{
+									"key": "access_token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjVjOGJhNGY4Njk4YjNiMDAyMzM5N2UzOSIsImlhdCI6MTU1Mjg1MDkzM30.tgpY-n_EPjSHd_9VKwrMAlrKfNO1nne5oP1NrGeb7s8"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Add Fav",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"url": {
+							"raw": "{{UrlLocal}}/anuncios/fav/5c8f85dba9b77b0023e514f5?access_token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjVjOGFmODdjZmRkM2ZmMDAyM2E3NGIzYSIsImlhdCI6MTU1Mjk0MDM0NH0.3t_XGbr0qeC69R6zudJIYXKaHlT96Kl9enEyl_jxdCI",
+							"host": [
+								"{{UrlLocal}}"
+							],
+							"path": [
+								"anuncios",
+								"fav",
+								"5c8f85dba9b77b0023e514f5"
+							],
+							"query": [
+								{
+									"key": "access_token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjVjOGFmODdjZmRkM2ZmMDAyM2E3NGIzYSIsImlhdCI6MTU1Mjk0MDM0NH0.3t_XGbr0qeC69R6zudJIYXKaHlT96Kl9enEyl_jxdCI"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Delete Fav",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"url": {
+							"raw": "{{UrlLocal}}/anuncios/fav/5c8f85dba9b77b0023e514f5?access_token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjVjOGFmODdjZmRkM2ZmMDAyM2E3NGIzYSIsImlhdCI6MTU1Mjk0MDM0NH0.3t_XGbr0qeC69R6zudJIYXKaHlT96Kl9enEyl_jxdCI",
+							"host": [
+								"{{UrlLocal}}"
+							],
+							"path": [
+								"anuncios",
+								"fav",
+								"5c8f85dba9b77b0023e514f5"
+							],
+							"query": [
+								{
+									"key": "access_token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjVjOGFmODdjZmRkM2ZmMDAyM2E3NGIzYSIsImlhdCI6MTU1Mjk0MDM0NH0.3t_XGbr0qeC69R6zudJIYXKaHlT96Kl9enEyl_jxdCI"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "ListFavorites",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"url": {
+							"raw": "{{UrlHeroku}}/anuncios/favs?access_token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjVjOGJhNGY4Njk4YjNiMDAyMzM5N2UzOSIsImlhdCI6MTU1Mjk4NTI1NH0.391st7UC-8zTZq_7ljM-xKMiMR6wIPUlpnrAVFFTNR8",
+							"host": [
+								"{{UrlHeroku}}"
+							],
+							"path": [
+								"anuncios",
+								"favs"
+							],
+							"query": [
+								{
+									"key": "access_token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjVjOGJhNGY4Njk4YjNiMDAyMzM5N2UzOSIsImlhdCI6MTU1Mjk4NTI1NH0.391st7UC-8zTZq_7ljM-xKMiMR6wIPUlpnrAVFFTNR8"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "ListAnuncioAuth",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"url": {
+							"raw": "{{UrlHeroku}}/anuncios/auth?access_token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjVjOGJhNGY4Njk4YjNiMDAyMzM5N2UzOSIsImlhdCI6MTU1MzAxMTEzMn0.9J2Pvwj8ENq83NLS9OdBS_8m5pKPBrWgnSuObRBnHT0",
+							"host": [
+								"{{UrlHeroku}}"
+							],
+							"path": [
+								"anuncios",
+								"auth"
+							],
+							"query": [
+								{
+									"key": "access_token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjVjOGJhNGY4Njk4YjNiMDAyMzM5N2UzOSIsImlhdCI6MTU1MzAxMTEzMn0.9J2Pvwj8ENq83NLS9OdBS_8m5pKPBrWgnSuObRBnHT0"
 								}
 							]
 						}
@@ -445,20 +587,20 @@
 								},
 								{
 									"key": "anuncioId",
-									"value": "5c8af94ffdd3ff0023a74b3d",
+									"value": "5c8af929fdd3ff0023a74b3c",
 									"type": "text"
 								},
 								{
 									"key": "contenido",
-									"value": "Podríamos hablar por chat?",
+									"value": "podría dejarte mi teléfono",
 									"type": "text"
 								}
 							]
 						},
 						"url": {
-							"raw": "{{UrlHeroku}}/comentarios?access_token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjVjOGFmODU4ZmRkM2ZmMDAyM2E3NGIzOSIsImlhdCI6MTU1MjY0Mjc3MH0.iOWK2WL5otQng6oquqQ1EzCQ92SXl3BSPf_BCondnO4",
+							"raw": "{{UrlLocal}}/comentarios?access_token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjVjOGFmODNkZmRkM2ZmMDAyM2E3NGIzOCIsImlhdCI6MTU1MjY3NDk5OH0.pqmE6GHW52mKvOu644qHCX8S7cd5ztjJY8UsxbRcx8M",
 							"host": [
-								"{{UrlHeroku}}"
+								"{{UrlLocal}}"
 							],
 							"path": [
 								"comentarios"
@@ -466,7 +608,7 @@
 							"query": [
 								{
 									"key": "access_token",
-									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjVjOGFmODU4ZmRkM2ZmMDAyM2E3NGIzOSIsImlhdCI6MTU1MjY0Mjc3MH0.iOWK2WL5otQng6oquqQ1EzCQ92SXl3BSPf_BCondnO4"
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjVjOGFmODNkZmRkM2ZmMDAyM2E3NGIzOCIsImlhdCI6MTU1MjY3NDk5OH0.pqmE6GHW52mKvOu644qHCX8S7cd5ztjJY8UsxbRcx8M"
 								}
 							]
 						}
@@ -527,19 +669,19 @@
 	],
 	"variable": [
 		{
-			"id": "bb1ef9f8-69bc-4037-a9e9-e494809d3620",
+			"id": "e5f0c8c6-6a94-48b7-b4a3-794642cd9446",
 			"key": "UrlLocal",
 			"value": "http://localhost:9000",
 			"type": "string"
 		},
 		{
-			"id": "2feae1ca-9fb0-4c05-a045-bdd4338f0cc3",
+			"id": "38e1be0c-b39e-4a09-8711-512885fca14b",
 			"key": "MasterKeyAUP",
 			"value": "4JeZTCtYMb9PIyFN0juQY3FMP8Hdrt6Q",
 			"type": "string"
 		},
 		{
-			"id": "2cb20fe7-bfd5-441d-b154-e7b5227b834a",
+			"id": "3f11c096-58db-4038-9d70-9825ff0fccf7",
 			"key": "UrlHeroku",
 			"value": "https://aupairs.herokuapp.com",
 			"type": "string"
