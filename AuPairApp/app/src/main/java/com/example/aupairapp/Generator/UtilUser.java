@@ -6,7 +6,9 @@ import android.content.SharedPreferences;
 import com.example.aupairapp.Model.User;
 
 import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 public class UtilUser {
 
@@ -51,6 +53,15 @@ public class UtilUser {
                 .getString("Nombre", null);
 
         return nombre;
+    }
+
+    public static List<String> getFavs(Context mContext) {
+        setSharedPreferences(mContext);
+        Set<String> favs = new HashSet<>();
+        favs = sharedPreferences
+                .getStringSet("favs", null);
+
+        return new ArrayList<String>(favs);
     }
 
     public static void setImagen(Context mContext, String imagen) {

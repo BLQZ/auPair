@@ -24,4 +24,13 @@ public interface AnuncioService {
 
     @DELETE("anuncios/{id}")
     Call<ResponseContainer<Anuncio>> removeAnuncio(@Path("id") String id);
+
+    @POST("anuncios/fav/{id}")
+    Call<ResponseContainer<Anuncio>> addFavAnuncio(@Path("id") String id);
+
+    @DELETE("anuncios/fav/{id}")
+    Call<ResponseContainer<Anuncio>> removeFavAnuncio(@Path("id") String id);
+
+    @GET("anuncios/favs")
+    Call<ResponseContainer<Anuncio>> getFavAnuncios();
 }

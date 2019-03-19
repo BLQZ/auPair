@@ -49,6 +49,7 @@ public class DashboardActivity extends AppCompatActivity implements AnuncioListe
     private MyAnuncioRecyclerViewAdapter adapter;
     private static final int ANUNCIO_LIST_ALL = 1;
     private static final int ANUNCIO_LIST_MINE = 2;
+    private static final int ANUNCIO_LIST_FAVS = 3;
 
     private BottomNavigationView.OnNavigationItemSelectedListener mOnNavigationItemSelectedListener
             = new BottomNavigationView.OnNavigationItemSelectedListener() {
@@ -64,6 +65,10 @@ public class DashboardActivity extends AppCompatActivity implements AnuncioListe
                     btnToAddAnuncio.show();
                     return true;
                 case R.id.navigation_favoritos:
+                    getSupportFragmentManager()
+                            .beginTransaction()
+                            .replace(R.id.contenedor, AnuncioFragment.newInstance(ANUNCIO_LIST_FAVS))
+                            .commit();
                     btnToAddAnuncio.hide();
                     return true;
                 case R.id.navigation_mis_anuncios:

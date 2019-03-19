@@ -37,13 +37,39 @@ export const index = ({ params, querymen: { query, select, cursor } }, res, next
         .catch(next)
 }
 
+export const authenticatedIndex = ({ user, querymen: { query, select, cursor } }, res, next) => {
+    Anuncio
+        .find(query, select, cursor)
+        .populate('ownerId', 'name picture role email')
+        .then((result) => result.map((anuncio) => {
+            let favoriteAnuncio = JSON.parse(JSON.stringify(anuncio))
+            console.log(user.favs);
+            console.log('Id ' + anuncio.id)
+            favoriteAnuncio['isFav'] = user.favs.indexOf(anuncio.id) > -1
+            return favoriteAnuncio
+        }))
+        .then((result) => ({
+            count: result.length,
+            rows: result
+        }))
+        .then(success(res))
+        .catch(next)
+}
+
 export const indexMyAnuncios = ({ user, querymen: { query, select, cursor } }, res, next) => {
     Anuncio.find({ ownerId: user.id })
         .populate('ownerId', 'name picture role email')
         .then(notFound(res))
-        .then((anuncios) => ({
-            count: anuncios.length,
-            rows: anuncios
+        .then((result) => result.map((anuncio) => {
+            let favoriteAnuncio = JSON.parse(JSON.stringify(anuncio))
+            console.log(user.favs);
+            console.log('Id ' + anuncio.id)
+            favoriteAnuncio['isFav'] = user.favs.indexOf(anuncio.id) > -1
+            return favoriteAnuncio
+        }))
+        .then((result) => ({
+            count: result.length,
+            rows: result
         }))
         .then(success(res, 200))
         .catch(next)

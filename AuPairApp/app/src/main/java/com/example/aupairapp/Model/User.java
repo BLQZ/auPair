@@ -1,5 +1,7 @@
 package com.example.aupairapp.Model;
 
+import java.util.List;
+
 public class User {
 
     /*@SerializedName("_id")
@@ -9,6 +11,7 @@ public class User {
     private String picture;
     private String email;
     private String role;
+    private List<String> favs;
 
 
 
@@ -62,6 +65,14 @@ public class User {
 
     public String getRole() {
         return role;
+    }
+
+    public List<String> getFavs() {
+        return favs;
+    }
+
+    public void setFavs(List<String> favs) {
+        this.favs = favs;
     }
 
     @Override

@@ -9,20 +9,30 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.bumptech.glide.Glide;
 import com.example.aupairapp.DashboardActivity;
+import com.example.aupairapp.Generator.ServiceGenerator;
+import com.example.aupairapp.Generator.TipoAutenticacion;
 import com.example.aupairapp.Generator.UtilToken;
 import com.example.aupairapp.Generator.UtilUser;
 import com.example.aupairapp.Listener.AnuncioListener;
 import com.example.aupairapp.MainActivity;
 import com.example.aupairapp.Model.Anuncio;
+import com.example.aupairapp.Model.ResponseContainer;
 import com.example.aupairapp.R;
 import com.example.aupairapp.Services.AnuncioService;
 import com.example.aupairapp.SessionActivity;
 import com.example.aupairapp.ViewModel.AnuncioViewModel;
 
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
+
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
 
 public class MyAnuncioRecyclerViewAdapter extends RecyclerView.Adapter<MyAnuncioRecyclerViewAdapter.ViewHolder> {
 
@@ -50,7 +60,7 @@ public class MyAnuncioRecyclerViewAdapter extends RecyclerView.Adapter<MyAnuncio
     }
 
     @Override
-    public void onBindViewHolder(final ViewHolder holder, int position) {
+    public void onBindViewHolder(final ViewHolder holder, final int position) {
         holder.mItem = mValues.get(position);
         holder.tvName.setText(mValues.get(position).getOwnerId().getName());
         holder.tvEmail.setText(mValues.get(position).getOwnerId().getEmail());
@@ -77,8 +87,13 @@ public class MyAnuncioRecyclerViewAdapter extends RecyclerView.Adapter<MyAnuncio
         if(UtilToken.getToken(this.contexto) == null){
             holder.ivDeleteAnuncio.setVisibility(View.INVISIBLE);
         } else {
-            String id = UtilUser.getId(this.contexto);
-            String idOwner=  this.mValues.get(position).getOwnerId().getId();
+            /*Set<String> favs = new HashSet<>();
+            Log.d("d", String.valueOf(UtilUser.getFavs(this.contexto).size()));*/
+            /*if(UtilUser.getFavs(this.contexto).contains(this.mValues.get(position).getId())){
+                Log.d("d", "es favorito");
+            }*/
+            String id = UtilUser.getEmail(this.contexto);
+            String idOwner=  this.mValues.get(position).getOwnerId().getEmail();
             Log.d("d", this.mValues.get(position).toString());
             if(id.equals(idOwner)){
                 holder.ivDeleteAnuncio.setVisibility(View.VISIBLE);
@@ -90,8 +105,24 @@ public class MyAnuncioRecyclerViewAdapter extends RecyclerView.Adapter<MyAnuncio
 
         holder.ivDeleteAnuncio.setOnClickListener(new View.OnClickListener() {
             @Override
-            public void onClick(View v) {
-                /*AnuncioService*/
+            public void onClick(final View v) {
+                AnuncioService service = ServiceGenerator.createService(AnuncioService.class, UtilToken.getToken(v.getContext()), TipoAutenticacion.JWT);
+                Call<ResponseContainer<Anuncio>> call = service.removeAnuncio(mValues.get(position).getId());
+
+                call.enqueue(new Callback<ResponseContainer<Anuncio>>() {
+                    @Override
+                    public void onResponse(retrofit2.Call<ResponseContainer<Anuncio>> call, Response<ResponseContainer<Anuncio>> response) {
+                        if(response.isSuccessful()){
+                            Toast.makeText(holder.mView.getContext(), "Anuncio borrado", Toast.LENGTH_SHORT).show();
+                        }
+                    }
+
+                    @Override
+                    public void onFailure(retrofit2.Call<ResponseContainer<Anuncio>> call, Throwable t) {
+                        Log.e("NetworkFailure", t.getMessage());
+                        Toast.makeText(v.getContext(), "Error de conexión", Toast.LENGTH_SHORT).show();
+                    }
+                });
             }
         });
 
