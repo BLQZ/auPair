@@ -36,4 +36,7 @@ public interface AnuncioService {
 
     @GET("anuncios/auth")
     Call<ResponseContainer<Anuncio>> getAnunciosAuth();
+
+    @GET("/anuncios/{id}/")
+    Call<Anuncio> getOneAnuncio(@Path("id") String id);
 }

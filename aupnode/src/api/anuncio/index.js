@@ -2,7 +2,7 @@ import { Router } from 'express'
 import { middleware as query, Schema } from 'querymen'
 import { middleware as body } from 'bodymen'
 import { master, token } from '../../services/passport'
-import { create, index, show, update, destroy, indexMyAnuncios, addFavorite, delFavorite, userFavorites, authenticatedIndex } from './controller'
+import { create, index, show, update, destroy, indexMyAnuncios, addFavorite, delFavorite, userFavorites, authenticatedIndex, indexOwner } from './controller'
 import { schema } from './model'
 export Anuncio, { schema }
 from './model'
@@ -82,6 +82,20 @@ router.get('/mine',
     indexMyAnuncios)
 
 /**
+ * @api {get} /anuncios Retrieve anuncios of one User
+ * @apiName RetrieveMineAnuncios
+ * @apiGroup Anuncio
+ * @apiUse listParams
+ * @apiSuccess {Number} count Total amount of anuncios.
+ * @apiSuccess {Object[]} rows List of anuncios.
+ * @apiError {Object} 400 Some parameters may contain invalid values.
+ */
+router.get('/:ownerId',
+    master(),
+    query(anunciosSchema),
+    indexOwner)
+
+/**
  * @api {get} /anuncios Retrieve mine anuncios
  * @apiName RetrieveMineAnuncios
  * @apiGroup Anuncio
@@ -104,6 +118,7 @@ router.get('/favs',
  * @apiError 404 Anuncio not found.
  */
 router.get('/:id',
+    query(anunciosSchema),
     show)
 
 /**

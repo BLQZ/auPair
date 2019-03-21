@@ -12,6 +12,7 @@ import android.support.design.widget.BottomNavigationView;
 import android.support.design.widget.FloatingActionButton;
 import android.support.v4.app.DialogFragment;
 import android.support.v4.app.FragmentActivity;
+import androidx.fragment.app.Fragment;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
@@ -23,6 +24,7 @@ import android.widget.Toast;
 import com.example.aupairapp.Adapters.MyAnuncioRecyclerViewAdapter;
 import com.example.aupairapp.Dialogs.AddAnuncioFragment;
 import com.example.aupairapp.Fragments.AnuncioFragment;
+import com.example.aupairapp.Fragments.ChatFragment;
 import com.example.aupairapp.Generator.ServiceGenerator;
 import com.example.aupairapp.Generator.TipoAutenticacion;
 import com.example.aupairapp.Generator.UtilToken;
@@ -37,6 +39,7 @@ import com.example.aupairapp.ViewModel.AnuncioViewModel;
 
 import java.util.List;
 
+import co.chatsdk.core.session.InterfaceManager;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
@@ -83,6 +86,11 @@ public class DashboardActivity extends AppCompatActivity implements AnuncioListe
                     btnToAddAnuncio.hide();
                     return true;
                 case R.id.navigation_chat:
+                    /*Fragment f = new ChatFragment();
+                    getSupportFragmentManager()
+                            .beginTransaction()
+                            .replace(R.id.contenedor, f)
+                            .commit();*/
                     btnToAddAnuncio.hide();
                     return true;
             }
@@ -175,7 +183,7 @@ public class DashboardActivity extends AppCompatActivity implements AnuncioListe
                     Toast.makeText(DashboardActivity.this, "Error al subir anuncio", Toast.LENGTH_SHORT).show();
 
                 } else {
-                    getAnuncios(DashboardActivity.this);
+                    getAnunciosAuth(DashboardActivity.this);
                 }
             }
 
@@ -194,9 +202,9 @@ public class DashboardActivity extends AppCompatActivity implements AnuncioListe
 
     }
 
-    public void getAnuncios(final Context ctx){
-        AnuncioService service = ServiceGenerator.createService(AnuncioService.class);
-        Call<ResponseContainer<Anuncio>> call = service.getAnuncios();
+    public void getAnunciosAuth(final Context ctx){
+        AnuncioService service = ServiceGenerator.createService(AnuncioService.class, UtilToken.getToken(ctx), TipoAutenticacion.JWT);
+        Call<ResponseContainer<Anuncio>> call = service.getAnunciosAuth();
 
         call.enqueue(new Callback<ResponseContainer<Anuncio>>() {
             @Override

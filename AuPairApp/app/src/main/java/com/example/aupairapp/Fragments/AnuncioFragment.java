@@ -86,6 +86,7 @@ public class AnuncioFragment extends Fragment {
         View view = inflater.inflate(R.layout.fragment_anuncio_list, container, false);
         swipe = view.findViewById(R.id.swipeAnuncios);
 
+
         // Set the adapter
         if (view instanceof SwipeRefreshLayout) {
             ctx = view.getContext();
@@ -108,7 +109,8 @@ public class AnuncioFragment extends Fragment {
                             adapter = new MyAnuncioRecyclerViewAdapter(
                                     ctx,
                                     anuncioList,
-                                    mListener
+                                    mListener,
+                                    ANUNCIO_LIST_ALL
                             );
                             recyclerView.setAdapter(adapter);
                         }
@@ -124,9 +126,7 @@ public class AnuncioFragment extends Fragment {
 
                 lanzarViewModel(ctx);
 
-            }
-
-            if(anuncioListType == ANUNCIO_LIST_ALL_AUTH){
+            } else if(anuncioListType == ANUNCIO_LIST_ALL_AUTH){
 
                 AnuncioService service = ServiceGenerator.createService(AnuncioService.class, UtilToken.getToken(ctx), TipoAutenticacion.JWT);
                 Call<ResponseContainer<Anuncio>> call = service.getAnunciosAuth();
@@ -140,7 +140,8 @@ public class AnuncioFragment extends Fragment {
                             adapter = new MyAnuncioRecyclerViewAdapter(
                                     ctx,
                                     anuncioList,
-                                    mListener
+                                    mListener,
+                                    ANUNCIO_LIST_ALL_AUTH
                             );
                             recyclerView.setAdapter(adapter);
                         }
@@ -156,9 +157,7 @@ public class AnuncioFragment extends Fragment {
 
                 lanzarViewModel(ctx);
 
-            }
-
-            if(anuncioListType == ANUNCIO_LIST_MINE){
+            } else if (anuncioListType == ANUNCIO_LIST_MINE){
                 AnuncioService service = ServiceGenerator.createService(AnuncioService.class, UtilToken.getToken(ctx), TipoAutenticacion.JWT);
                 Call<ResponseContainer<Anuncio>> call = service.getMineAnuncios();
 
@@ -171,7 +170,8 @@ public class AnuncioFragment extends Fragment {
                             adapter = new MyAnuncioRecyclerViewAdapter(
                                     ctx,
                                     anuncioList,
-                                    mListener
+                                    mListener,
+                                    ANUNCIO_LIST_MINE
                             );
                             recyclerView.setAdapter(adapter);
                         }
@@ -183,9 +183,8 @@ public class AnuncioFragment extends Fragment {
                         Toast.makeText(getActivity(), "Error de conexión", Toast.LENGTH_SHORT).show();
                     }
                 });
-            }
 
-            if(anuncioListType == ANUNCIO_LIST_FAVS){
+            } else if (anuncioListType == ANUNCIO_LIST_FAVS){
                 AnuncioService service = ServiceGenerator.createService(AnuncioService.class, UtilToken.getToken(ctx), TipoAutenticacion.JWT);
                 Call<ResponseContainer<Anuncio>> call = service.getFavAnuncios();
 
@@ -198,7 +197,8 @@ public class AnuncioFragment extends Fragment {
                             adapter = new MyAnuncioRecyclerViewAdapter(
                                     ctx,
                                     anuncioList,
-                                    mListener
+                                    mListener,
+                                    ANUNCIO_LIST_FAVS
                             );
                             recyclerView.setAdapter(adapter);
                         }
@@ -211,6 +211,9 @@ public class AnuncioFragment extends Fragment {
                     }
                 });
             }
+
+            /*lanzarViewModel(this.ctx);*/
+
         }
 
         swipe.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
@@ -277,11 +280,8 @@ public class AnuncioFragment extends Fragment {
                 @Override
                 public void onResponse(Call<ResponseContainer<Anuncio>> call, Response<ResponseContainer<Anuncio>> response) {
                     if(response.isSuccessful()){
-                        recyclerView.setAdapter(new MyAnuncioRecyclerViewAdapter(
-                                ctx,
-                                response.body().getRows(),
-                                mListener
-                        ));
+                        anuncioList = response.body().getRows();
+                        adapter.setNuevosAnuncios(anuncioList);
                     }
                 }
 
@@ -291,9 +291,7 @@ public class AnuncioFragment extends Fragment {
                     Toast.makeText(getActivity(), "Error de conexión", Toast.LENGTH_SHORT).show();
                 }
             });
-        }
-
-        if(anuncioListType == ANUNCIO_LIST_ALL_AUTH){
+        }else if(anuncioListType == ANUNCIO_LIST_ALL_AUTH){
 
             AnuncioService service = ServiceGenerator.createService(AnuncioService.class, UtilToken.getToken(ctx), TipoAutenticacion.JWT);
             Call<ResponseContainer<Anuncio>> call = service.getAnunciosAuth();
@@ -303,13 +301,7 @@ public class AnuncioFragment extends Fragment {
                 public void onResponse(Call<ResponseContainer<Anuncio>> call, Response<ResponseContainer<Anuncio>> response) {
                     if(response.isSuccessful()){
                         anuncioList = response.body().getRows();
-
-                        adapter = new MyAnuncioRecyclerViewAdapter(
-                                ctx,
-                                anuncioList,
-                                mListener
-                        );
-                        recyclerView.setAdapter(adapter);
+                        adapter.setNuevosAnuncios(anuncioList);
                     }
                 }
 
@@ -323,9 +315,7 @@ public class AnuncioFragment extends Fragment {
 
             lanzarViewModel(ctx);
 
-        }
-
-        if(anuncioListType == ANUNCIO_LIST_MINE){
+        }else if(anuncioListType == ANUNCIO_LIST_MINE){
             AnuncioService service = ServiceGenerator.createService(AnuncioService.class, UtilToken.getToken(ctx), TipoAutenticacion.JWT);
             Call<ResponseContainer<Anuncio>> call = service.getMineAnuncios();
 
@@ -334,13 +324,7 @@ public class AnuncioFragment extends Fragment {
                 public void onResponse(Call<ResponseContainer<Anuncio>> call, Response<ResponseContainer<Anuncio>> response) {
                     if(response.isSuccessful()){
                         anuncioList = response.body().getRows();
-
-                        adapter = new MyAnuncioRecyclerViewAdapter(
-                                ctx,
-                                anuncioList,
-                                mListener
-                        );
-                        recyclerView.setAdapter(adapter);
+                        adapter.setNuevosAnuncios(anuncioList);
                     }
                 }
 
@@ -350,9 +334,7 @@ public class AnuncioFragment extends Fragment {
                     Toast.makeText(getActivity(), "Error de conexión", Toast.LENGTH_SHORT).show();
                 }
             });
-        }
-
-        if(anuncioListType == ANUNCIO_LIST_FAVS){
+        } else if(anuncioListType == ANUNCIO_LIST_FAVS){
             AnuncioService service = ServiceGenerator.createService(AnuncioService.class, UtilToken.getToken(ctx), TipoAutenticacion.JWT);
             Call<ResponseContainer<Anuncio>> call = service.getFavAnuncios();
 
@@ -361,13 +343,7 @@ public class AnuncioFragment extends Fragment {
                 public void onResponse(Call<ResponseContainer<Anuncio>> call, Response<ResponseContainer<Anuncio>> response) {
                     if(response.isSuccessful()){
                         anuncioList = response.body().getRows();
-
-                        adapter = new MyAnuncioRecyclerViewAdapter(
-                                ctx,
-                                anuncioList,
-                                mListener
-                        );
-                        recyclerView.setAdapter(adapter);
+                        adapter.setNuevosAnuncios(anuncioList);
                     }
                 }
 
@@ -378,7 +354,7 @@ public class AnuncioFragment extends Fragment {
                 }
             });
         }
-        lanzarViewModel(ctx);
+
     }
 
 

@@ -1,12 +1,14 @@
 package com.example.aupairapp.Model;
 
 import java.util.Date;
+import java.util.List;
 
 public class Anuncio {
 
     private String id;
     private String contenido;
     private User ownerId;
+    private List<String> comentarios;
     private Date createdAt;
     private boolean isFav;
 
@@ -66,6 +68,14 @@ public class Anuncio {
 
     public void setFav(boolean fav) {
         isFav = fav;
+    }
+
+    public List<String> getComentarios() {
+        return comentarios;
+    }
+
+    public void setComentarios(List<String> comentarios) {
+        this.comentarios = comentarios;
     }
 
     @Override

@@ -75,10 +75,37 @@ export const indexMyAnuncios = ({ user, querymen: { query, select, cursor } }, r
         .catch(next)
 }
 
-export const show = ({ params }, res, next) =>
+var user;
+export const indexOwner = async({ params, querymen: { query, select, cursor } }, res, next) => {
+
+    await User.findById(params.ownerId)
+        .then((result) => {
+            user = result.view(true)
+        })
+        .then(success(res))
+        .catch(next)
+
+    await Anuncio.find({ ownerId: params.ownerId })
+        .populate('ownerId', 'name picture role email')
+        .then(notFound(res))
+        .then((result) => result.map((anuncio) => {
+            let favoriteAnuncio = JSON.parse(JSON.stringify(anuncio))
+            favoriteAnuncio['isFav'] = user.favs.indexOf(anuncio.id) > -1
+            return favoriteAnuncio
+        }))
+        .then((result) => ({
+            count: result.length,
+            rows: result
+        }))
+        .then(success(res, 200))
+        .catch(next)
+}
+
+export const show = ({ params, querymen: { query, select, cursor } }, res, next) =>
     Anuncio.findById(params.id)
+    .populate('ownerId', 'name picture role email')
     .then(notFound(res))
-    .then((anuncio) => anuncio ? anuncio.view() : null)
+    .then((anuncio) => anuncio ? anuncio.view(true) : null)
     .then(success(res))
     .catch(next)
 

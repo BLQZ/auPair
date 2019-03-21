@@ -2,9 +2,7 @@ package com.example.aupairapp.Fragments;
 
 import android.content.Context;
 import android.content.Intent;
-import android.net.Uri;
 import android.os.Bundle;
-import android.support.v4.app.Fragment;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -17,11 +15,11 @@ import com.example.aupairapp.DashboardActivity;
 import com.example.aupairapp.Generator.ServiceGenerator;
 import com.example.aupairapp.Generator.UtilToken;
 import com.example.aupairapp.Generator.UtilUser;
-import com.example.aupairapp.MainActivity;
 import com.example.aupairapp.Model.LoginResponse;
 import com.example.aupairapp.R;
 import com.example.aupairapp.Services.AuthService;
 
+import android.support.v4.app.Fragment;
 import okhttp3.Credentials;
 import retrofit2.Call;
 import retrofit2.Callback;

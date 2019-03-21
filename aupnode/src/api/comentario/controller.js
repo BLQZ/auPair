@@ -1,4 +1,4 @@
-import { success, notFound } from '../../services/response/'
+import { success, notFound, authorOrAdmin } from '../../services/response/'
 import { Comentario } from '.'
 import { Anuncio } from '../anuncio'
 
@@ -29,6 +29,17 @@ export const index = ({ querymen: { query, select, cursor } }, res, next) =>
     .then(success(res))
     .catch(next)
 
+export const indexAnuncio = ({ params, querymen: { query, select, cursor } }, res, next) =>
+    Comentario
+    .find({ anuncioId: params.id })
+    .populate('userId', 'name picture role email')
+    .then((comentarios) => ({
+        count: comentarios.length,
+        rows: comentarios.map((comentario) => comentario.view(true))
+    }))
+    .then(success(res))
+    .catch(next)
+
 export const show = ({ params }, res, next) =>
     Comentario.findById(params.id)
     .then(notFound(res))
@@ -36,9 +47,19 @@ export const show = ({ params }, res, next) =>
     .then(success(res))
     .catch(next)
 
-export const destroy = ({ params }, res, next) =>
-    Comentario.findById(params.id)
-    .then(notFound(res))
-    .then((comentario) => comentario ? comentario.remove() : null)
-    .then(success(res, 204))
-    .catch(next)
+var idAnuncio;
+export const destroy = async({ user, params }, res, next) => {
+    await Comentario.findById(params.id)
+        .then(notFound(res))
+        .then(authorOrAdmin(res, user, 'userId'))
+        .then((comentario) => {
+            idAnuncio = comentario.anuncioId
+            comentario ? comentario.remove() : null
+        })
+        .then(success(res, 204))
+        .catch(next)
+
+    await Anuncio.findByIdAndUpdate(idAnuncio, { $pull: { comentarios: params.id } })
+        .then(success(res, 204))
+        .catch(next)
+}
