@@ -8,6 +8,19 @@
     tools:context=".DashboardActivity">
 
     <android.support.design.widget.FloatingActionButton
+        android:id="@+id/btnToChat"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
+        android:layout_marginBottom="8dp"
+        android:clickable="true"
+        app:backgroundTint="@color/colorCard"
+        app:layout_constraintBottom_toTopOf="@+id/navigation"
+        app:layout_constraintStart_toStartOf="parent"
+        app:srcCompat="@drawable/ic_chatting_24"
+        app:useCompatPadding="true" />
+
+    <android.support.design.widget.FloatingActionButton
         android:id="@+id/btnToAddAnuncio"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"

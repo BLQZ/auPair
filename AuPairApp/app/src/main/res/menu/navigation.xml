@@ -21,9 +21,4 @@
         android:icon="@drawable/ic_settings_black_24dp"
         android:title="@string/ajustes" />
 
-    <item
-        android:id="@+id/navigation_chat"
-        android:icon="@drawable/ic_chat_black_24dp"
-        android:title="@string/chat" />
-
 </menu>
