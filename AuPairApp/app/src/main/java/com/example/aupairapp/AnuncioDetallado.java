@@ -33,6 +33,7 @@ import retrofit2.Response;
 
 public class AnuncioDetallado extends AppCompatActivity implements ComentarioListener {
 
+    private static final int ANUNCIO_LIST_OWNER = 5;
     TextView tvName, tvEmail, tvContenido;
     ImageView imgOwner, imgOwnerNewComent, send;
     EditText etNewComent;

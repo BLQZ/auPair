@@ -31,12 +31,15 @@ public interface AnuncioService {
     @DELETE("anuncios/fav/{id}")
     Call<ResponseContainer<Anuncio>> removeFavAnuncio(@Path("id") String id);
 
-    @GET("anuncios/favs")
+    @GET("anuncios/favs/tal")
     Call<ResponseContainer<Anuncio>> getFavAnuncios();
 
     @GET("anuncios/auth")
     Call<ResponseContainer<Anuncio>> getAnunciosAuth();
 
-    @GET("/anuncios/{id}/")
+    @GET("/anuncios/tal/{id}/")
     Call<Anuncio> getOneAnuncio(@Path("id") String id);
+
+    @GET("anuncios/{email}")
+    Call<ResponseContainer<Anuncio>> getAnunciosOwner(@Path("email") String email);
 }

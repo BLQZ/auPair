@@ -78,14 +78,14 @@ export const indexMyAnuncios = ({ user, querymen: { query, select, cursor } }, r
 var user;
 export const indexOwner = async({ params, querymen: { query, select, cursor } }, res, next) => {
 
-    await User.findById(params.ownerId)
+    await User.findOne({ email: params.email })
         .then((result) => {
             user = result.view(true)
         })
         .then(success(res))
         .catch(next)
 
-    await Anuncio.find({ ownerId: params.ownerId })
+    await Anuncio.find({ ownerId: user.id })
         .populate('ownerId', 'name picture role email')
         .then(notFound(res))
         .then((result) => result.map((anuncio) => {
@@ -159,6 +159,8 @@ export const delFavorite = ({ user, params }, res, next) =>
 
 
 export const userFavorites = ({ user, querymen: { query, select, cursor } }, res, next) => {
+    console.log(user);
+
     query['_id'] = { $in: user.favs }
     Anuncio
         .find(query, select, cursor)

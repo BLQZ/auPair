@@ -51,6 +51,9 @@ public class AnuncioFragment extends Fragment {
     private static final int ANUNCIO_LIST_MINE = 2;
     private static final int ANUNCIO_LIST_FAVS = 3;
     private static final int ANUNCIO_LIST_ALL_AUTH = 4;
+    private static final int ANUNCIO_LIST_OWNER = 5;
+    private static final String OWNER_LIST = "OWNER_LIST";
+    private String emailOwner;
     // TODO: Customize parameters
     private int anuncioListType = 1;
     private AnuncioListener mListener;
@@ -71,12 +74,22 @@ public class AnuncioFragment extends Fragment {
         return fragment;
     }
 
+    public static AnuncioFragment newInstance(int anuncioListType, String email) {
+        AnuncioFragment fragment = new AnuncioFragment();
+        Bundle args = new Bundle();
+        args.putInt(ANUNCIO_LIST_TYPE, anuncioListType);
+        args.putString(OWNER_LIST, email);
+        fragment.setArguments(args);
+        return fragment;
+    }
+
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
         if (getArguments() != null) {
             anuncioListType = getArguments().getInt(ANUNCIO_LIST_TYPE);
+            emailOwner = getArguments().getString(OWNER_LIST);
         }
     }
 
@@ -199,6 +212,33 @@ public class AnuncioFragment extends Fragment {
                                     anuncioList,
                                     mListener,
                                     ANUNCIO_LIST_FAVS
+                            );
+                            recyclerView.setAdapter(adapter);
+                        }
+                    }
+
+                    @Override
+                    public void onFailure(Call<ResponseContainer<Anuncio>> call, Throwable t) {
+                        Log.e("NetworkFailure", t.getMessage());
+                        Toast.makeText(getActivity(), "Error de conexión", Toast.LENGTH_SHORT).show();
+                    }
+                });
+            } else if (anuncioListType == ANUNCIO_LIST_OWNER){
+                AnuncioService service = ServiceGenerator.createService(AnuncioService.class);
+                Call<ResponseContainer<Anuncio>> call = service.getAnunciosOwner(emailOwner);
+
+                call.enqueue(new Callback<ResponseContainer<Anuncio>>() {
+                    @Override
+                    public void onResponse(Call<ResponseContainer<Anuncio>> call, Response<ResponseContainer<Anuncio>> response) {
+                        if(response.isSuccessful()){
+                            anuncioList = response.body().getRows();
+
+                            adapter = new MyAnuncioRecyclerViewAdapter(
+                                    ctx,
+                                    anuncioList,
+                                    mListener,
+                                    ANUNCIO_LIST_OWNER,
+                                    emailOwner
                             );
                             recyclerView.setAdapter(adapter);
                         }
@@ -337,6 +377,25 @@ public class AnuncioFragment extends Fragment {
         } else if(anuncioListType == ANUNCIO_LIST_FAVS){
             AnuncioService service = ServiceGenerator.createService(AnuncioService.class, UtilToken.getToken(ctx), TipoAutenticacion.JWT);
             Call<ResponseContainer<Anuncio>> call = service.getFavAnuncios();
+
+            call.enqueue(new Callback<ResponseContainer<Anuncio>>() {
+                @Override
+                public void onResponse(Call<ResponseContainer<Anuncio>> call, Response<ResponseContainer<Anuncio>> response) {
+                    if(response.isSuccessful()){
+                        anuncioList = response.body().getRows();
+                        adapter.setNuevosAnuncios(anuncioList);
+                    }
+                }
+
+                @Override
+                public void onFailure(Call<ResponseContainer<Anuncio>> call, Throwable t) {
+                    Log.e("NetworkFailure", t.getMessage());
+                    Toast.makeText(getActivity(), "Error de conexión", Toast.LENGTH_SHORT).show();
+                }
+            });
+        } else if (anuncioListType == ANUNCIO_LIST_OWNER){
+            AnuncioService service = ServiceGenerator.createService(AnuncioService.class);
+            Call<ResponseContainer<Anuncio>> call = service.getAnunciosOwner(emailOwner);
 
             call.enqueue(new Callback<ResponseContainer<Anuncio>>() {
                 @Override

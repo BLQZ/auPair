@@ -32,6 +32,7 @@ import com.example.aupairapp.Model.ResponseContainer;
 import com.example.aupairapp.R;
 import com.example.aupairapp.Services.AnuncioService;
 import com.example.aupairapp.SessionActivity;
+import com.example.aupairapp.UsuarioDetalladoActivity;
 import com.example.aupairapp.ViewModel.AnuncioViewModel;
 
 import java.util.HashSet;
@@ -49,17 +50,27 @@ public class MyAnuncioRecyclerViewAdapter extends RecyclerView.Adapter<MyAnuncio
     private Context contexto;
     private AnuncioViewModel mViewModel;
     private int typeList;
+    private String emailOwner;
 
     private static final int ANUNCIO_LIST_ALL = 1;
     private static final int ANUNCIO_LIST_MINE = 2;
     private static final int ANUNCIO_LIST_FAVS = 3;
     private static final int ANUNCIO_LIST_ALL_AUTH = 4;
+    private static final int ANUNCIO_LIST_OWNER=5;
 
     public MyAnuncioRecyclerViewAdapter(Context ctx, List<Anuncio> items, AnuncioListener listener, int type) {
         contexto = ctx;
         mValues = items;
         mListener = listener;
         typeList = type;
+    }
+
+    public MyAnuncioRecyclerViewAdapter(Context ctx, List<Anuncio> items, AnuncioListener listener, int type, String owner) {
+        contexto = ctx;
+        mValues = items;
+        mListener = listener;
+        typeList = type;
+        emailOwner = owner;
     }
 
     public void setNuevosAnuncios(List<Anuncio> nuevosAnuncios) {
@@ -108,7 +119,11 @@ public class MyAnuncioRecyclerViewAdapter extends RecyclerView.Adapter<MyAnuncio
                 if(UtilToken.getToken(v.getContext()) == null){
                     v.getContext().startActivity(new Intent(v.getContext().getApplicationContext(), SessionActivity.class));
                 } else {
-                    Log.d("t", UtilToken.getToken(v.getContext()).toString());
+                    /*Log.d("t", UtilToken.getToken(v.getContext()).toString());*/
+                    Intent i = new Intent(v.getContext().getApplicationContext(), UsuarioDetalladoActivity.class);
+                    i.putExtra("emailOwner", mValues.get(position).getOwnerId().getEmail());
+                    Log.d("w", mValues.get(position).getOwnerId().getEmail());
+                    v.getContext().startActivity(i);
                 }
             }
         });
@@ -476,6 +491,25 @@ public class MyAnuncioRecyclerViewAdapter extends RecyclerView.Adapter<MyAnuncio
         } else if(typeList == ANUNCIO_LIST_FAVS){
             AnuncioService service = ServiceGenerator.createService(AnuncioService.class, UtilToken.getToken(this.contexto), TipoAutenticacion.JWT);
             Call<ResponseContainer<Anuncio>> call = service.getFavAnuncios();
+
+            call.enqueue(new Callback<ResponseContainer<Anuncio>>() {
+                @Override
+                public void onResponse(Call<ResponseContainer<Anuncio>> call, Response<ResponseContainer<Anuncio>> response) {
+                    if(response.isSuccessful()){
+                        mValues = response.body().getRows();
+                        setNuevosAnuncios(mValues);
+                    }
+                }
+
+                @Override
+                public void onFailure(Call<ResponseContainer<Anuncio>> call, Throwable t) {
+                    Log.e("NetworkFailure", t.getMessage());
+                    Toast.makeText(contexto, "Error de conexión", Toast.LENGTH_SHORT).show();
+                }
+            });
+        } else if (typeList == ANUNCIO_LIST_OWNER){
+            AnuncioService service = ServiceGenerator.createService(AnuncioService.class);
+            Call<ResponseContainer<Anuncio>> call = service.getAnunciosOwner(emailOwner);
 
             call.enqueue(new Callback<ResponseContainer<Anuncio>>() {
                 @Override

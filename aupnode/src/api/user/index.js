@@ -39,14 +39,14 @@ router.get('/me',
     showMe)
 
 /**
- * @api {get} /users/:id Retrieve user
+ * @api {get} /users/:email Retrieve user
  * @apiName RetrieveUser
  * @apiGroup User
  * @apiPermission public
  * @apiSuccess {Object} user User's data.
  * @apiError 404 User not found.
  */
-router.get('/:id',
+router.get('/:email',
     show)
 
 /**

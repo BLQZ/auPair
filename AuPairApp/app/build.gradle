@@ -26,7 +26,7 @@ dependencies {
     implementation 'com.android.support:support-v4:28.0.0'
     implementation 'com.android.support:recyclerview-v7:28.0.0'
     implementation 'com.android.support:support-vector-drawable:28.0.0'
-    implementation 'androidx.legacy:legacy-support-v4:1.0.0-beta01'
+    /*implementation 'androidx.legacy:legacy-support-v4:1.0.0-beta01'*/
     testImplementation 'junit:junit:4.12'
     androidTestImplementation 'com.android.support.test:runner:1.0.2'
     androidTestImplementation 'com.android.support.test.espresso:espresso-core:3.0.2'
@@ -42,19 +42,10 @@ dependencies {
     implementation "android.arch.lifecycle:viewmodel:1.1.0"
     implementation 'de.hdodenhof:circleimageview:2.2.0'
     implementation 'com.android.support:design:28.0.0'
-    implementation 'co.chatsdk.chatsdk:chat-sdk-core:4.6.0'
-    implementation 'co.chatsdk.chatsdk:chat-sdk-ui:4.6.0'
-    implementation 'co.chatsdk.chatsdk:chat-sdk-firebase-adapter:4.6.0'
-    implementation 'co.chatsdk.chatsdk:chat-sdk-firebase-file-storage:4.6.0'
-    implementation 'co.chatsdk.chatsdk:chat-sdk-firebase-push:4.4.8'
 
-    ext {
+    /*ext {
         bintrayVersion = "1.8.4"
         mavenGradleVersion = "2.1"
-        androidxAppcompatVersion = "1.0.2"
-        androidxConstraintLayoutVersion = "2.0.0-alpha2"
-        androidxLifecycleExtensionsVersion = "2.0.0"
-        androidxRecyclerViewVersion = "1.0.0"
         materialVersion = "1.0.0"
         playAuthVersion = "16.0.1"
         playMapsVersion = "16.0.0"
@@ -82,7 +73,7 @@ dependencies {
         countryPickerVersion = "2.0.0"
         imageCropperVersion = "2.8.0"
         photoViewVersion = "2.2.0"
-    }
+    }*/
 
 
 }

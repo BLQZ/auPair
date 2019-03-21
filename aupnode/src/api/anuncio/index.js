@@ -82,7 +82,7 @@ router.get('/mine',
     indexMyAnuncios)
 
 /**
- * @api {get} /anuncios Retrieve anuncios of one User
+ * @api {get} /anuncios/:email Retrieve anuncios of one User
  * @apiName RetrieveMineAnuncios
  * @apiGroup Anuncio
  * @apiUse listParams
@@ -90,7 +90,7 @@ router.get('/mine',
  * @apiSuccess {Object[]} rows List of anuncios.
  * @apiError {Object} 400 Some parameters may contain invalid values.
  */
-router.get('/:ownerId',
+router.get('/:email',
     master(),
     query(anunciosSchema),
     indexOwner)
@@ -104,7 +104,7 @@ router.get('/:ownerId',
  * @apiSuccess {Object[]} rows List of anuncios.
  * @apiError {Object} 400 Some parameters may contain invalid values.
  */
-router.get('/favs',
+router.get('/favs/tal',
     token({ required: true }),
     query(anunciosSchema),
     userFavorites)
@@ -117,7 +117,7 @@ router.get('/favs',
  * @apiError {Object} 400 Some parameters may contain invalid values.
  * @apiError 404 Anuncio not found.
  */
-router.get('/:id',
+router.get('/tal/:id',
     query(anunciosSchema),
     show)
 

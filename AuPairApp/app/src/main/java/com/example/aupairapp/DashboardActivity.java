@@ -1,18 +1,14 @@
 package com.example.aupairapp;
 
-import android.arch.lifecycle.Observer;
 import android.arch.lifecycle.ViewModelProviders;
 import android.content.Context;
 import android.content.DialogInterface;
-import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
-import android.support.annotation.Nullable;
 import android.support.design.widget.BottomNavigationView;
 import android.support.design.widget.FloatingActionButton;
 import android.support.v4.app.DialogFragment;
 import android.support.v4.app.FragmentActivity;
-import androidx.fragment.app.Fragment;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
@@ -24,7 +20,6 @@ import android.widget.Toast;
 import com.example.aupairapp.Adapters.MyAnuncioRecyclerViewAdapter;
 import com.example.aupairapp.Dialogs.AddAnuncioFragment;
 import com.example.aupairapp.Fragments.AnuncioFragment;
-import com.example.aupairapp.Fragments.ChatFragment;
 import com.example.aupairapp.Generator.ServiceGenerator;
 import com.example.aupairapp.Generator.TipoAutenticacion;
 import com.example.aupairapp.Generator.UtilToken;
@@ -32,14 +27,10 @@ import com.example.aupairapp.Generator.UtilUser;
 import com.example.aupairapp.Listener.AnuncioListener;
 import com.example.aupairapp.Model.Anuncio;
 import com.example.aupairapp.Model.AnuncioDto;
-import com.example.aupairapp.Model.LoginResponse;
 import com.example.aupairapp.Model.ResponseContainer;
 import com.example.aupairapp.Services.AnuncioService;
 import com.example.aupairapp.ViewModel.AnuncioViewModel;
 
-import java.util.List;
-
-import co.chatsdk.core.session.InterfaceManager;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
