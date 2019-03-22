@@ -21,7 +21,7 @@ import retrofit2.Response;
 public class UsuarioDetalladoActivity extends AppCompatActivity implements AnuncioListener {
 
     private static final int ANUNCIO_LIST_OWNER = 5;
-    private TextView tvName, tvEmail, tvCity, tvHijos, tvGender;
+    private TextView tvName, tvEmail, tvCity, tvHijos, tvGender, tvDate;
     private ImageView imgUser, imgHijos;
     private String email;
     private UserDto user;
@@ -41,6 +41,8 @@ public class UsuarioDetalladoActivity extends AppCompatActivity implements Anunc
 
         imgHijos = findViewById(R.id.imgHijos);
         imgHijos.setVisibility(View.GONE);
+
+        tvDate = findViewById(R.id.date);
 
         Bundle extras = getIntent().getExtras();
         email = extras.getString("emailOwner");
@@ -74,6 +76,7 @@ public class UsuarioDetalladoActivity extends AppCompatActivity implements Anunc
 
                     tvName.setText(user.getName() + " (" + user.getRole() + ")");
                     tvEmail.setText(user.getEmail());
+                    tvDate.setText(user.getDate().toLocaleString());
                     tvCity.setText(user.getAddress() + ", " + user.getCity() + " (" + user.getCountry() + ")");
 
                     if(user.isMale()){

@@ -28,4 +28,9 @@
     <string name="favoritos">Favoritos</string>
     <string name="chat">Chat</string>
     <string name="ajustes">Ajustes</string>
+    <string name="Logout">Cerrar Sesión</string>
+    <string name="EmailPerfil">Email:</string>
+    <string name="RepitPass">Repita su contraseña</string>
+    <string name="CambiarPass">Cambiar contraseña</string>
+    <string name="NuevaPass">Nueva contraseña</string>
 </resources>

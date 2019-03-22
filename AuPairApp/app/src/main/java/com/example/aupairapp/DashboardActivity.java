@@ -19,6 +19,7 @@ import android.widget.Toast;
 
 import com.example.aupairapp.Adapters.MyAnuncioRecyclerViewAdapter;
 import com.example.aupairapp.Dialogs.AddAnuncioFragment;
+import com.example.aupairapp.Fragments.AjustesFragment;
 import com.example.aupairapp.Fragments.AnuncioFragment;
 import com.example.aupairapp.Generator.ServiceGenerator;
 import com.example.aupairapp.Generator.TipoAutenticacion;
@@ -35,7 +36,7 @@ import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
 
-public class DashboardActivity extends AppCompatActivity implements AnuncioListener, AddAnuncioFragment.AddAnuncioDialogListener {
+public class DashboardActivity extends AppCompatActivity implements AnuncioListener, AddAnuncioFragment.AddAnuncioDialogListener, AjustesFragment.OnFragmentInteractionListener {
 
     private TextView mTextMessage;
     private FloatingActionButton btnToAddAnuncio, btnToChat;
@@ -58,7 +59,7 @@ public class DashboardActivity extends AppCompatActivity implements AnuncioListe
                             .replace(R.id.contenedor, AnuncioFragment.newInstance(ANUNCIO_LIST_ALL_AUTH))
                             .commit();
                     btnToAddAnuncio.show();
-                    btnToChat.show();
+                    btnToChat.hide();
                     return true;
                 case R.id.navigation_favoritos:
                     getSupportFragmentManager()
@@ -66,7 +67,7 @@ public class DashboardActivity extends AppCompatActivity implements AnuncioListe
                             .replace(R.id.contenedor, AnuncioFragment.newInstance(ANUNCIO_LIST_FAVS))
                             .commit();
                     btnToAddAnuncio.hide();
-                    btnToChat.show();
+                    btnToChat.hide();
                     return true;
                 case R.id.navigation_mis_anuncios:
                     getSupportFragmentManager()
@@ -74,9 +75,13 @@ public class DashboardActivity extends AppCompatActivity implements AnuncioListe
                             .replace(R.id.contenedor, AnuncioFragment.newInstance(ANUNCIO_LIST_MINE))
                             .commit();
                     btnToAddAnuncio.hide();
-                    btnToChat.show();
+                    btnToChat.hide();
                     return true;
                 case R.id.navigation_ajustes:
+                    getSupportFragmentManager()
+                            .beginTransaction()
+                            .replace(R.id.contenedor, new AjustesFragment())
+                            .commit();
                     btnToAddAnuncio.hide();
                     btnToChat.hide();
                     return true;
@@ -101,7 +106,7 @@ public class DashboardActivity extends AppCompatActivity implements AnuncioListe
         btnToAddAnuncio.show();
 
         btnToChat = findViewById(R.id.btnToChat);
-        btnToChat.show();
+        btnToChat.hide();
 
         btnToAddAnuncio.setOnClickListener(new View.OnClickListener() {
             @Override

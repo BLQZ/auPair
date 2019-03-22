@@ -11,4 +11,7 @@ public interface UserService {
     @GET("/users/{email}")
     Call<UserDto> getOneUser(@Path("email") String email);
 
+    @GET("/users/me")
+    Call<UserDto> getMe();
+
 }
